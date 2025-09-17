@@ -1,5 +1,12 @@
-<IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteRule ^$ public/ [L]
-RewriteRule (.*) public/$1 [L]
-</IfModule>
+RewriteEngine On
+
+# No loops si ya está en /public
+RewriteCond %{REQUEST_URI} !^/public/
+
+# Sirve ficheros estáticos desde /public sin cambiar la URL
+RewriteRule ^(assets|css|js|img|fonts|vendor)/(.*)$ public/$1/$2 [L]
+
+# El resto (rutas de la app) van al front controller de /public
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ public/index.php [QSA,L]

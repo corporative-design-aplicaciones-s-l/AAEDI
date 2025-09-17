@@ -1,0 +1,94 @@
+<!-- HEADER -->
+<header>
+    <nav class="navbar navbar-expand-lg sticky-top bg-white py-3 border-bottom">
+        <div class="container d-flex align-items-center justify-content-between gap-2 gap-lg-4">
+
+            <!-- Logo + Nombre -->
+            <div class="brand-group d-flex align-items-center gap-2 gap-lg-3 me-lg-3">
+                <a class="navbar-brand p-0" href="<?= url('/') ?>">
+                    <img src="<?= asset('img/aaedi.png') ?>" height="54" alt="AAEDI">
+                </a>
+                <a class="navbar-brand mb-0 d-none d-lg-block lh-1 brand-title" href="<?= url('/') ?>"
+                    aria-label="AAEDI — inicio">
+                    <span class="d-block">ASOCIACIÓN ABOGADOS EXPERTOS</span>
+                    <span class="d-block">EN DERECHO INMOBILIARIO</span>
+                </a>
+            </div>
+
+            <!-- Toggler móvil -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú -->
+            <?php
+        $cur = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+        $is = fn(string $p) => rtrim($cur,'/') === rtrim($p,'/');
+      ?>
+            <div class="collapse navbar-collapse justify-content-end align-items-center ps-lg-4" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center gap-2 gap-lg-3 ms-lg-2">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark <?= $is('/') ? 'active' : '' ?>" href="<?= url('/') ?>" <?=$is('/')
+                            ? 'aria-current="page"' : '' ?>>Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-dark <?= $is('/filosofia') ? 'active' : '' ?>"
+                            href="<?= url('/filosofia') ?>">Filosofía</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark <?= $is('/miembros') ? 'active' : '' ?>"
+                            href="<?= url('/miembros') ?>">Miembros</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark <?= $is('/junta-de-gobierno') ? 'active' : '' ?>"
+                            href="<?= url('/junta-de-gobierno') ?>">Junta de Gobierno</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark <?= $is('/asociarse') ? 'active' : '' ?>"
+                            href="<?= url('/asociarse') ?>">Asociarse</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark <?= $is('/formaciones') ? 'active' : '' ?>"
+                            href="<?= url('/formaciones') ?>">Formaciones</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark <?= $is('/servicios') ? 'active' : '' ?>"
+                            href="<?= url('/servicios') ?>">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark <?= $is('/contacto') ? 'active' : '' ?>"
+                            href="<?= url('/contacto') ?>">Contacto</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+<style>
+    /* Espacios y legibilidad del header */
+    .navbar .brand-title {
+        font-size: .95rem;
+        letter-spacing: .2px
+    }
+
+    .navbar .navbar-brand {
+        padding-top: 0;
+        padding-bottom: 0
+    }
+
+    /* Icono del toggler visible sobre bg-white (BS 5.3) */
+    .navbar-toggler-icon {
+        background-image: var(--bs-navbar-toggler-icon-bg,
+                url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0,.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"));
+    }
+
+    @media (min-width: 992px) {
+        .navbar .navbar-collapse {
+            margin-left: 12px
+        }
+    }
+
+    @media (min-width:1200px) {
+        .navbar .navbar-nav {
+            gap: 18px
+        }
+    }
+</style>
+
+<!-- Cookie banner (opcional) -->
+<div id="cookie-banner"
+    style="display:none;position:fixed;bottom:0;left:0;width:100%;background:#222;color:#fff;padding:15px;text-align:center;z-index:1000;">
+    Este sitio utiliza cookies para mejorar la experiencia.
+    <a href="<?= url('/politica-cookies') ?>" style="color:#0af;">Más información</a>.
+    <button id="acceptCookies" class="btn btn-info btn-sm">Aceptar</button>
+    <button id="customizeCookies" class="btn btn-outline-info btn-sm">Personalizar</button>
+</div>

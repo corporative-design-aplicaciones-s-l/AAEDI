@@ -1,0 +1,86 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 hidden-sm hidden-xs"> &nbsp;
+            </div>
+            <div class="col-sm-4">
+                <img src="img/logo_aaedi_blanco.svg" alt="" />
+            </div>
+            <div class="col-sm-4 hidden-sm hidden-xs"> &nbsp;
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex flex-column flex-md-row justify-content-center justify-content-md-around mb-4 text-center gap-2 gap-md-0">
+                    <a href="/aviso-legal.php" class="text-white fw-bold">Aviso Legal</a>
+                    <a href="/politica-privacidad.php" class="text-white fw-bold">Política de Privacidad</a>
+                    <a href="/politica-cookies.php" class="text-white fw-bold">Política de Cookies</a>
+                    <!--<a href="/" class="text-white fw-bold">Personalizar Cookies</a>-->
+                    <a href="/politica-whistleblowing.php" class="text-white fw-bold">Política Whistleblowing</a>
+                    <a href="/accesibilidad.php" class="text-white fw-bold">Accesibilidad</a>
+                    <a href="/sitemap.php" class="text-white fw-bold">Sitemap</a>
+                </div>
+            </div>
+        </div>
+</footer>
+</div>
+<!-- JAVASCRIPT -->
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/vendor/slick/slick.min.js"></script>
+<script src="js/vendor/lity/lity.min.js"></script>
+<script src="js/vendor/stellar.js"></script>
+<script src="js/main.js"></script>
+<script src="js/mc/jquery.ketchup.all.min.js"></script>
+<script src="js/mc/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l;
+        b[l] || (b[l] =
+            function() {
+                (b[l].q = b[l].q || []).push(arguments)
+            });
+        b[l].l = +new Date;
+        e = o.createElement(i);
+        r = o.getElementsByTagName(i)[0];
+        e.src = '//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-XXXXX-X', 'auto');
+    ga('send', 'pageview');
+</script>
+<!--SCRIPT COOKIES-->
+<script>
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        if (!getCookie("cookiesAccepted")) {
+            document.getElementById("cookie-banner").style.display = "block";
+        }
+
+        document.getElementById("acceptCookies").addEventListener("click", function() {
+            setCookie("cookiesAccepted", "true", 365);
+            document.getElementById("cookie-banner").style.display = "none";
+        });
+    });
+</script>

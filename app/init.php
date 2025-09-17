@@ -14,3 +14,5 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 // paths de ayuda
 define('VIEW_PATH', BASE_PATH . '/app/views');
 define('STORAGE_PATH', BASE_PATH . '/storage');
+require BASE_PATH . '/app/helpers/url.php';
+
