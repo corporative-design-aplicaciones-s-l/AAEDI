@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?= asset('css/themesuite.css') ?>">
     <link rel="stylesheet" href="<?= asset('js/vendor/lity/lity.min.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/main.css') ?>">
+    
 
     <!-- Slot opcional de estilos por-vista -->
     <?= $styles ?? '' ?>

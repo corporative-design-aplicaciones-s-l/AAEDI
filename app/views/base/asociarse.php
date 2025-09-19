@@ -1,3 +1,8 @@
+<?php if (session_status() === PHP_SESSION_NONE)
+    session_start();
+$_SESSION['csrf_token'] = bin2hex(random_bytes(16));
+?>
+
 <style>
     /* ——— Botones estilo “píldora” ——— */
     .btn-pill {
@@ -168,157 +173,130 @@
         color: #0b5ab8;
     }
 </style>
+</head>
 
-<div class="page_header text-center" data-stellar-background-ratio="0.5">
-    <div class="container">
-        <h3>Cómo asociarse</h3>
-        <p>Únete a AAEDI y forma parte de la red de abogados especializados en Derecho Inmobiliario.</p>
+<body class="asociarse">
+    <div class="wrapper">
+        <div class="page_header text-center" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <h3>Cómo asociarse</h3>
+                <p>Únete a AAEDI y forma parte de la red de abogados especializados en Derecho Inmobiliario.</p>
+            </div>
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="bg-gray padding-top-70 padding-bottom-70">
+            <div class="container">
+
+                <!-- Requisitos + Documentación -->
+                <div class="row g-4">
+                    <div class="col-lg-7">
+                        <div class="sheet h-100">
+                            <h2 class="h4 mb-3">Requisitos de admisión</h2>
+                            <p class="mb-2">Podrán ser miembros de la Asociación las personas que voluntariamente lo
+                                soliciten y, además, cumplan el siguiente requisito:</p>
+                            <ul class="icon-list mb-3">
+                                <li><i class="fa fa-check-circle"></i> <strong>Ser abogado/a colegiado/a en
+                                        ejercicio</strong> (no basta con la licenciatura o el grado).</li>
+                            </ul>
+                            <h3 class="h5 mt-3">Cuotas</h3>
+                            <p class="mb-0"><strong>Cuota de ingreso:</strong> 500&nbsp;€ &nbsp;·&nbsp; <strong>Cuota
+                                    periódica:</strong> 60&nbsp;€ por trimestre.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="sheet h-100">
+                            <h2 class="h4 mb-3">Documentación para el alta</h2>
+                            <ul class="icon-list">
+                                <li><i class="fa fa-check-circle"></i> Solicitud de ingreso firmada.</li>
+                                <li><i class="fa fa-check-circle"></i> Orden de domiciliación bancaria (SEPA).</li>
+                                <li><i class="fa fa-check-circle"></i> Documento RGPD cumplimentado.</li>
+                                <li><i class="fa fa-check-circle"></i> Fotocopia compulsada del título universitario en
+                                    Derecho.</li>
+                                <li><i class="fa fa-check-circle"></i> Certificado de colegiación como ejerciente.</li>
+                                <li><i class="fa fa-check-circle"></i> Fotocopia del DNI.</li>
+                                <li><i class="fa fa-check-circle"></i> 1 fotografía tamaño carnet.</li>
+                                <li><i class="fa fa-check-circle"></i> Alta en el I.A.E. (si procede).</li>
+                                <li><i class="fa fa-check-circle"></i> Copia del Seguro de Responsabilidad Civil
+                                    profesional.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <form id="join-form" action="/public/asociarse/enviar" method="post" novalidate>
+                <div class="row my-5 g-4">
+                    <div class="col-md-6">
+                        <label>Nombre y apellidos*</label>
+                        <input name="full_name" type="text" class="form-control mt-2 mb-3" required>
+
+                        <label>Email*</label>
+                        <input name="email" type="email" class="form-control mt-2 mb-3" required>
+
+                        <label>Teléfono</label>
+                        <input name="phone" type="tel" class="form-control mt-2 mb-3">
+
+                        <label>Despacho / Firma</label>
+                        <input name="firm" type="text" class="form-control mt-2 mb-3">
+
+                        <label>Nº de colegiado</label>
+                        <input name="bar_number" type="text" class="form-control mt-2 mb-3">
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <label>Ciudad</label>
+                        <input name="city" type="text" class="form-control mt-2 mb-3">
+
+                        <label>Mensaje</label>
+                        <textarea name="message" rows="6" class="form-control mt-2 mb-3"></textarea>
+
+                        <div class="justify-content-center align-items-center text-center">
+                            <div class="form-control border-0">
+                                <input class="form-check-input" type="checkbox" id="consent_tos" name="consent_tos"
+                                    class="form-control mt-2 mb-3" required>
+                                <label class="form-check-label" for="consent_tos" class="form-control mt-2 mb-3">&nbsp;
+                                    Acepto los
+                                    Términos*</label>
+                            </div>
+                            <div class="form-control border-0">
+                                <input class="form-check-input" type="checkbox" id="consent_privacy"
+                                    name="consent_privacy" class="form-control mt-2 mb-3" required>
+                                <label class="form-check-label" for="consent_privacy"
+                                    class="form-control mt-2 mb-3">&nbsp;
+                                    Acepto la
+                                    Privacidad*</label>
+                            </div>
+
+                            <!-- Honeypot -->
+                            <input type="text" name="website" tabindex="-1" autocomplete="off"
+                                style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+
+                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                            <button type="submit" class="btn btn-primary mt-2">Solicitar alta</button>
+                            <div id="join-status" class="mt-2" role="status" aria-live="polite"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- CONTENIDO -->
-<div class="bg-gray padding-top-70 padding-bottom-70">
-    <div class="container">
+    <script>
+        // AJAX
+        document.getElementById('join-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.currentTarget;
+            const status = document.getElementById('join-status');
+            status.textContent = 'Enviando…';
 
-        <!-- Requisitos + Documentación -->
-        <div class="row g-4">
-            <div class="col-lg-7">
-                <div class="sheet h-100">
-                    <h2 class="h4 mb-3">Requisitos de admisión</h2>
-                    <p class="mb-2">Podrán ser miembros de la Asociación las personas que voluntariamente lo
-                        soliciten y, además, cumplan el siguiente requisito:</p>
-                    <ul class="icon-list mb-3">
-                        <li><i class="fa fa-check-circle"></i> <strong>Ser abogado/a colegiado/a en
-                                ejercicio</strong> (no basta con la licenciatura o el grado).</li>
-                    </ul>
-                    <h3 class="h5 mt-3">Cuotas</h3>
-                    <p class="mb-0"><strong>Cuota de ingreso:</strong> 500&nbsp;€ &nbsp;·&nbsp; <strong>Cuota
-                            periódica:</strong> 60&nbsp;€ por trimestre.</p>
-                </div>
-            </div>
+            const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+            let data; try { data = await res.json(); } catch { data = { ok: false, error: 'Respuesta inválida' }; }
 
-            <div class="col-lg-5">
-                <div class="sheet h-100">
-                    <h2 class="h4 mb-3">Documentación para el alta</h2>
-                    <ul class="icon-list">
-                        <li><i class="fa fa-check-circle"></i> Solicitud de ingreso firmada.</li>
-                        <li><i class="fa fa-check-circle"></i> Orden de domiciliación bancaria (SEPA).</li>
-                        <li><i class="fa fa-check-circle"></i> Documento RGPD cumplimentado.</li>
-                        <li><i class="fa fa-check-circle"></i> Fotocopia compulsada del título universitario en
-                            Derecho.</li>
-                        <li><i class="fa fa-check-circle"></i> Certificado de colegiación como ejerciente.</li>
-                        <li><i class="fa fa-check-circle"></i> Fotocopia del DNI.</li>
-                        <li><i class="fa fa-check-circle"></i> 1 fotografía tamaño carnet.</li>
-                        <li><i class="fa fa-check-circle"></i> Alta en el I.A.E. (si procede).</li>
-                        <li><i class="fa fa-check-circle"></i> Copia del Seguro de Responsabilidad Civil
-                            profesional.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Botones de impresión de cada formulario -->
-        <div class="text-center mt-4">
-            <a href="#form-solicitud" onclick="printForm('form-solicitud');return false;"
-                class="btn btn-pill btn-primary me-2">Solicitud de Ingreso</a>
-            <a href="#form-domiciliacion" onclick="printForm('form-domiciliacion');return false;"
-                class="btn btn-pill btn-outline-primary me-2">Domiciliación Bancaria</a>
-            <a href="#form-rgpd" onclick="printForm('form-rgpd');return false;"
-                class="btn btn-pill btn-outline-primary">Reglamento RGPD</a>
-        </div>
-
-        <!-- Formularios rellenables -->
-        <div id="form-solicitud" class="form-sheet mt-5">
-            <h3>Solicitud de ingreso</h3>
-            <p class="form-help">Rellene en mayúsculas. Esta solicitud implica la aceptación de los Estatutos de
-                AAEDI.</p>
-            <div class="form-grid">
-                <div><strong>Nombre y apellidos</strong><input name="nombre" class="print-input" type="text" />
-                </div>
-                <div><strong>DNI/NIE</strong><input name="dni" class="print-input" type="text" /></div>
-                <div><strong>Domicilio</strong><input name="domicilio" class="print-input" type="text" /></div>
-                <div><strong>CP / Población / Provincia</strong><input name="cp_poblacion_provincia" class="print-input"
-                        type="text" /></div>
-                <div><strong>Teléfono</strong><input name="telefono" class="print-input" type="tel" /></div>
-                <div><strong>Email</strong><input name="email" class="print-input" type="email" /></div>
-                <div class="full"><strong>Colegio de Abogados</strong><input name="colegio" class="print-input"
-                        type="text" /></div>
-                <div><strong>Nº colegiado/a</strong><input name="num_colegiado" class="print-input" type="text" /></div>
-                <div><strong>Condición</strong><input name="condicion" class="print-input" type="text"
-                        value="Ejerciente" /></div>
-                <div class="full"><strong>Modalidad de ejercicio</strong><input name="modalidad" class="print-input"
-                        type="text" placeholder="Por cuenta propia / Por cuenta ajena" />
-                </div>
-                <div class="full"><strong>IBAN para cuotas</strong><input name="iban" class="print-input" type="text" />
-                </div>
-            </div>
-            <p class="mt-3">Declaro que los datos son ciertos y solicito mi alta como miembro de AAEDI. Autorizo
-                el tratamiento de mis datos conforme al documento RGPD adjunto.</p>
-            <div class="form-grid">
-                <div><strong>En</strong><input name="lugar" class="print-input" type="text" /></div>
-                <div><strong>Fecha</strong><input name="fecha" class="print-input" type="date" /></div>
-                <div class="full"><strong>Firma</strong>
-                    <div class="form-line"></div>
-                </div>
-            </div>
-            <button class="btn btn-outline-primary btn-print" onclick="printForm('form-solicitud')">Imprimir</button>
-        </div>
-
-        <div id="form-domiciliacion" class="form-sheet">
-            <h3>Orden de domiciliación bancaria (SEPA)</h3>
-            <p class="form-help">Autorización para el cobro de cuotas (500 € de ingreso y 60 €/trimestre).</p>
-            <div class="form-grid">
-                <div class="full"><strong>Titular de la cuenta</strong><input name="titular" class="print-input"
-                        type="text" /></div>
-                <div><strong>DNI/NIE</strong><input name="dni_titular" class="print-input" type="text" /></div>
-                <div><strong>Teléfono</strong><input name="tel_titular" class="print-input" type="tel" /></div>
-                <div class="full"><strong>IBAN</strong><input name="iban_titular" class="print-input" type="text" />
-                </div>
-                <div class="full"><strong>Dirección</strong><input name="dir_titular" class="print-input" type="text" />
-                </div>
-            </div>
-            <p class="mt-3">Mediante la firma de esta orden, el deudor autoriza a AAEDI a enviar instrucciones a
-                su entidad para adeudar su cuenta y a su entidad a efectuar los adeudos siguiendo dichas
-                instrucciones. Como parte de sus derechos, el deudor está legitimado al reembolso por su entidad
-                en los términos del contrato con la misma.</p>
-            <div class="form-grid">
-                <div><strong>En</strong><input name="lugar_sepa" class="print-input" type="text" /></div>
-                <div><strong>Fecha</strong><input name="fecha_sepa" class="print-input" type="date" /></div>
-                <div class="full"><strong>Firma del titular</strong>
-                    <div class="form-line"></div>
-                </div>
-            </div>
-            <button class="btn btn-outline-primary btn-print"
-                onclick="printForm('form-domiciliacion')">Imprimir</button>
-        </div>
-
-        <div id="form-rgpd" class="form-sheet">
-            <h3>RGPD · Información y consentimiento</h3>
-            <p class="form-help">Documento de información básica y consentimiento para comunicaciones.</p>
-            <p><strong>Responsable:</strong> AAEDI – Asociación de Abogados Expertos en Derecho Inmobiliario.
-                <strong>Finalidad:</strong> Gestión de miembros, cobro de cuotas y comunicaciones internas.
-                <strong>Legitimación:</strong> Relación asociativa y consentimiento.
-                <strong>Destinatarios:</strong> No se cederán datos a terceros salvo obligación legal.
-                <strong>Derechos:</strong> Acceso, rectificación, supresión, oposición, limitación y
-                portabilidad en la dirección de contacto de AAEDI.
-            </p>
-            <div class="form-grid">
-                <div class="full"><strong>Nombre y apellidos</strong><input name="rgpd_nombre" class="print-input"
-                        type="text" /></div>
-                <div><strong>DNI/NIE</strong><input name="rgpd_dni" class="print-input" type="text" /></div>
-                <div><strong>Email</strong><input name="rgpd_email" class="print-input" type="email" /></div>
-            </div>
-            <p class="mt-2"><strong>Consiento</strong> recibir comunicaciones informativas de AAEDI relacionadas
-                con la actividad de la asociación.</p>
-            <div class="form-grid">
-                <div><strong>En</strong><input name="rgpd_lugar" class="print-input" type="text" /></div>
-                <div><strong>Fecha</strong><input name="rgpd_fecha" class="print-input" type="date" /></div>
-                <div class="full"><strong>Firma</strong>
-                    <div class="form-line"></div>
-                </div>
-            </div>
-            <button class="btn btn-outline-primary btn-print" onclick="printForm('form-rgpd')">Imprimir</button>
-        </div>
-
-    </div>
-</div>
+            if (data.ok) { status.textContent = '¡Solicitud enviada!'; form.reset(); }
+            else { status.textContent = 'Error: ' + (data.error || 'No se pudo enviar'); }
+        });
+    </script>

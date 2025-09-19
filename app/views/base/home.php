@@ -1,9 +1,94 @@
+<style>
+  /* Imagen centrada, un poco más grande */
+  #nosotros .about-hero-img {
+    max-width: 60%;
+    /* ajusta si la quieres más/menos grande */
+    width: 100%;
+    margin: 0 auto 24px;
+    /* border-radius: 10px; */
+  }
+
+  /* Prosa legible y con aire */
+  #nosotros .about-prose {
+    width: 100%;
+    margin: 0 auto;
+    /* centrado */
+    padding: 26px 30px;
+    /* aire interno */
+    /* border-radius: 12px; */
+    background: #fff;
+  }
+
+  #nosotros .about-prose p {
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  #nosotros .about-prose .icon-list {
+    margin: 0 0 8px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #nosotros .about-prose .icon-list li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 8px;
+  }
+
+  #nosotros .about-prose .icon-list li i {
+    position: absolute;
+    left: 0;
+    top: .2rem;
+    color: #0b5ab8;
+  }
+
+  #nosotros .about-prose .btn {
+    margin-top: 6px;
+  }
+
+  @media (max-width: 991.98px) {
+    #nosotros .about-prose {
+      padding: 20px;
+    }
+  }
+
+  /* ✅ Alineación perfecta de ticks y texto */
+  .icon-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .icon-list li {
+    display: flex;
+    align-items: flex-start;
+    /* alinea con la 1ª línea del texto */
+    gap: 10px;
+    margin: 8px 0;
+    padding-left: 0;
+    /* quitamos el hueco del absoluto anterior */
+  }
+
+  .icon-list li i {
+    position: static !important;
+    /* anula el absolute antiguo */
+    flex: 0 0 auto;
+    font-size: 1rem;
+    /* ajusta si quieres más/menos grande */
+    line-height: 1;
+    /* evita saltos raros */
+    transform: translateY(-5px);
+    /* microajuste; pon 0–3px según tipografía */
+    color: #0b5ab8;
+  }
+</style>
+
 <!-- WARP SECTION -->
 <div class="slider-wrap">
   <div class="home-slider3">
     <!-- SLIDE -->
-    <div class="item"
-         style="background-image:url('<?= asset('img/slider/01/4.jpg') ?>');
+    <div class="item" style="background-image:url('<?= asset('img/slider/01/4.jpg') ?>');
                 background-position:center; background-size:cover;">
       <div class="container">
         <div class="row center-content-ipad">
@@ -17,8 +102,8 @@
             <a href="<?= url('/contacto') ?>">Contacta con nosotros</a>
           </div>
           <div class="col-md-5 d-none d-lg-block">
-            <img src="<?= asset('img/slider/01/3.png') ?>"
-                 class="img-fluid wow fadeInRight" alt="AAEDI" data-wow-delay=".1s">
+            <img src="<?= asset('img/slider/01/3.png') ?>" class="img-fluid wow fadeInRight" alt="AAEDI"
+              data-wow-delay=".1s">
           </div>
         </div>
       </div>
@@ -226,7 +311,8 @@
     <form action="<?= url('/contacto') ?>" method="post" class="ajax-form form-main">
       <div class="row">
         <div class="col-sm-4"><input name="name" placeholder="Nombre" class="wow fadeInLeft" type="text"></div>
-        <div class="col-sm-4"><input name="phone" placeholder="Tel&eacute;fono" class="wow fadeInDown" type="text"></div>
+        <div class="col-sm-4"><input name="phone" placeholder="Tel&eacute;fono" class="wow fadeInDown" type="text">
+        </div>
         <div class="col-sm-4">
           <div class="custom-select wow fadeInRight">
             <i class="fa fa-angle-down"></i>

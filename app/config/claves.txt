@@ -1,0 +1,3 @@
+User: aaedi_admin
+Database: aaedi_main
+password: Wa,IcuaSm2$pE]K~

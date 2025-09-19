@@ -55,42 +55,116 @@
     </div>
 </div>
 <div class="wow fadeInUp" data-wow-delay=".1s">
-    <div id="map"></div>
+  <div id="map"></div>
+  <p class="mt-2" id="map-fallback" style="display:none;">
+    ¿No ves el mapa? 
+    <a id="directions-link" href="#" target="_blank" rel="noopener">Abrir en Google Maps</a>
+  </p>
 </div>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-<script type="text/javascript">
-    // When the window has finished loading create our google map below
-    google.maps.event.addDomListener(window, 'load', init);
+<?php
+// API: AIzaSyDmAJXl4gDIzeYXQR7-RTpujfIRfhu9ug4
+?>
 
-    function init() {
-        // Basic options for a simple Google Map
-        // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-        var mapOptions = {
-            // How zoomed in you want the map to start at (always required)
-            zoom: 11,
 
-            // The latitude and longitude to center the map (always required)
-            center: new google.maps.LatLng(40.6700, -73.9400), // New York
 
-            // How you would like to style the map. 
-            // This is where you would paste any style found on Snazzy Maps.
-            styles: [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 16 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 21 }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede" }, { "lightness": 21 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 }] }, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }] }]
-        };
+<!-- 2) ESTILOS MÍNIMOS (asegura altura visible) -->
+<style>
+  #map { width:100%; min-height:380px; border-radius:8px; }
+  @media (max-width: 576px){ #map { min-height:300px; } }
+  .gm-style-iw { font-size:14px; line-height:1.4; }
+  .map-cta {
+    display:inline-block; margin-top:6px; padding:6px 10px; border:1px solid #0b5ab8;
+    border-radius:6px; text-decoration:none;
+  }
+</style>
 
-        // Get the HTML DOM element that will contain your map 
-        // We are using a div with id="map" seen below in the <body>
-        var mapElement = document.getElementById('map');
+<!-- 3) SCRIPT COMPLETO -->
+<script>
+  // Dirección oficial AAEDI
+  const AAEDI_ADDRESS = "Av. Federico García Lorca 90, 03178 Benijófar, Alicante, España";
 
-        // Create the Google Map using our element and options defined above
-        var map = new google.maps.Map(mapElement, mapOptions);
+  // Si quieres un icono propio para el marcador, pon aquí la ruta (o deja null)
+  const MARKER_ICON = null; // p.ej. "img/marker.png"
 
-        // Let's also add a marker while we're at it
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(40.6700, -73.9400),
-            map: map,
-            title: 'Map',
-            // icon: "img/marker.png"
+  // Estilo suave (tipo Snazzy)
+  const MAP_STYLE = [
+    {"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},
+    {"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},
+    {"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},
+    {"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},
+    {"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},
+    {"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},
+    {"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},
+    {"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},
+    {"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},
+    {"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},
+    {"elementType":"labels.icon","stylers":[{"visibility":"off"}]},
+    {"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},
+    {"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},
+    {"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}
+  ];
+
+  // Construye enlace "Cómo llegar" para fallback y para el botón del InfoWindow
+  function buildDirectionsUrl(address) {
+    return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
+  }
+
+  // Callback de carga de la API
+  function initMap(){
+    const mapEl = document.getElementById("map");
+    const directionsLinkEl = document.getElementById("directions-link");
+    if (directionsLinkEl) directionsLinkEl.href = buildDirectionsUrl(AAEDI_ADDRESS);
+
+    // Centro provisional (se actualizará tras geocodificar)
+    const map = new google.maps.Map(mapEl, {
+      zoom: 16,
+      center: { lat: 38.0, lng: -0.7 },
+      styles: MAP_STYLE,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: true,
+      gestureHandling: "cooperative"
+    });
+
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: AAEDI_ADDRESS, region: "ES" }, (results, status) => {
+      if (status === "OK" && results[0]) {
+        const pos = results[0].geometry.location;
+        map.setCenter(pos);
+
+        const marker = new google.maps.Marker({
+          position: pos,
+          map,
+          title: "AAEDI",
+          icon: MARKER_ICON || undefined
         });
-    }
+
+        const infoHtml = `
+          <div>
+            <strong>AAEDI</strong><br>
+            ${AAEDI_ADDRESS}<br>
+            Tel: (+34) 965 72 48 71<br>
+            <a class="map-cta" href="${buildDirectionsUrl(AAEDI_ADDRESS)}" target="_blank" rel="noopener">
+              Cómo llegar
+            </a>
+          </div>
+        `;
+        const infowindow = new google.maps.InfoWindow({ content: infoHtml });
+        infowindow.open({ anchor: marker, map });
+        marker.addListener("click", () => infowindow.open({ anchor: marker, map }));
+
+      } else {
+        console.warn("Geocoding falló:", status);
+        // Fallback: si el geocoder falla, muestra el enlace directo y centra Alicante aprox.
+        map.setCenter({ lat: 38.3452, lng: -0.4810 }); // Alicante aprox.
+        const fb = document.getElementById("map-fallback");
+        if (fb) fb.style.display = "block";
+      }
+    });
+  }
 </script>
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmAJXl4gDIzeYXQR7-RTpujfIRfhu9ug4&callback=initMap&language=es&region=ES&v=weekly"
+  async defer></script>

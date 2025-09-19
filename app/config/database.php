@@ -3,13 +3,13 @@ return [
   'default' => 'dev',
   'connections' => [
     'dev' => [
-      'driver' => 'mysql', 'host' => '127.0.0.1', 'port' => 3306,
-      'database' => 'miapp_dev', 'username' => 'root', 'password' => 'secret',
+      'driver' => 'mysql', 'host' => '188.164.194.246', 'port' => 3306,
+      'database' => 'aaedi_main', 'username' => 'aaedi_admin', 'password' => 'Wa,IcuaSm2$pE]K~',
       'charset' => 'utf8mb4',
     ],
     'prod' => [
-      'driver' => 'mysql', 'host' => '10.0.0.5', 'port' => 3306,
-      'database' => 'miapp', 'username' => 'miusuario', 'password' => 'supersecreto',
+      'driver' => 'mysql', 'host' => 'localhost', 'port' => 3306,
+      'database' => 'miapp', 'username' => 'aaedi_admin', 'password' => 'Wa,IcuaSm2$pE]K~',
       'charset' => 'utf8mb4',
     ],
   ],
