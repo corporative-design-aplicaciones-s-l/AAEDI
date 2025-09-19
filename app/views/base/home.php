@@ -284,14 +284,14 @@
       <div class="prev3"><i class="fa fa-angle-left"></i></div>
       <div class="next3"><i class="fa fa-angle-right"></i></div>
       <div class="lawyer-carousel">
-        <?php include VIEW_PATH . '/Partials/index_members/miembros-a.html' ?>
-        <?php include VIEW_PATH . '/Partials/index_members/miembros-b.html' ?>
-        <?php include VIEW_PATH . '/Partials/index_members/miembros-e.html' ?>
-        <?php include VIEW_PATH . '/Partials/index_members/miembros-f.html' ?>
-        <?php include VIEW_PATH . '/Partials/index_members/miembros-i.html' ?>
-        <?php include VIEW_PATH . '/Partials/index_members/miembros-m.html' ?>
-        <?php include VIEW_PATH . '/Partials/index_members/miembros-n.html' ?>
-        <?php include VIEW_PATH . '/Partials/index_members/miembros-s.html' ?>
+        <?php include VIEW_PATH . '/partials/index_members/miembros-a.html' ?>
+        <?php include VIEW_PATH . '/partials/index_members/miembros-b.html' ?>
+        <?php include VIEW_PATH . '/partials/index_members/miembros-e.html' ?>
+        <?php include VIEW_PATH . '/partials/index_members/miembros-f.html' ?>
+        <?php include VIEW_PATH . '/partials/index_members/miembros-i.html' ?>
+        <?php include VIEW_PATH . '/partials/index_members/miembros-m.html' ?>
+        <?php include VIEW_PATH . '/partials/index_members/miembros-n.html' ?>
+        <?php include VIEW_PATH . '/partials/index_members/miembros-s.html' ?>
       </div>
     </div>
   </div>
