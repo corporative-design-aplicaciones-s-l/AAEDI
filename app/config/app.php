@@ -8,7 +8,7 @@ return [
     'user'   => 'notificaciones@aaedi.es',
     'pass'   => '6.6DQDE?HhGdRkB7',
     'from'   => ['address' => 'notificaciones@aaedi.es', 'name' => 'AAEDI - Notificaciones'],
-    'to'     => ['address' => 'max@dicopgroup.com', 'name' => 'AAEDI'],
+    'to'     => ['address' => 'info@aaedi.es', 'name' => 'AAEDI'],
     'secure' => 'ssl',              
   ],
 ];
