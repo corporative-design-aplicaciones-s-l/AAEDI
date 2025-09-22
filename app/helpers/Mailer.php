@@ -72,4 +72,45 @@ class Mailer
         }
         $m->send();
     }
+
+    public static function sendHtml(
+        array $mc,
+        array $to,
+        string $subject,
+        string $html,
+        string $alt = '',
+        array $replyTo = [],
+        bool $embedLogo = false
+    ): void {
+        $m = self::make($mc);
+
+        // destinatarios
+        foreach ($to as $addr => $name) {
+            $m->addAddress(is_int($addr) ? $name : $addr, is_int($addr) ? '' : $name);
+        }
+
+        // reply-to
+        foreach ($replyTo as $addr => $name) {
+            $m->addReplyTo(is_int($addr) ? $name : $addr, is_int($addr) ? '' : $name);
+        }
+
+        // logo embebido opcional
+        if ($embedLogo) {
+            $logoPath = __DIR__ . '/../../public/img/aaedi.png';
+            if (is_file($logoPath)) {
+                $m->addEmbeddedImage($logoPath, 'aaedi_logo', 'aaedi.png');
+                // sustituye en HTML si usas cid
+                $html = str_replace('[[AAEDI_LOGO_CID]]', 'cid:aaedi_logo', $html);
+            } else {
+                $html = str_replace('[[AAEDI_LOGO_CID]]', '', $html);
+            }
+        }
+
+        $m->isHTML(true);
+        $m->Subject = $subject;
+        $m->Body = $html;
+        $m->AltBody = $alt ?: strip_tags($html);
+        $m->send();
+    }
+
 }

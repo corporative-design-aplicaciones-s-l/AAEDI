@@ -1,3 +1,6 @@
+
+
+
 <div class="page_header text-center" data-stellar-background-ratio="0.5">
     <div class="container">
         <h3>Miembros</h3>
@@ -9,69 +12,47 @@
     <div class="container">
 
         <?php
-        // Directorios posibles (mayúsculas/minúsculas y nombres que usaste)
-        $dirs = [
-            VIEW_PATH . '/partials/members',
-            VIEW_PATH . '/Partials/members',
-            VIEW_PATH . '/partials/index_members',
-            VIEW_PATH . '/Partials/index_members',
-        ];
-
-        $members = [];
-        foreach ($dirs as $d) {
-            if (is_dir($d)) {
-                $members = glob($d . '/*.html') ?: [];
-                if ($members)
-                    break;
-            }
-        }
+        $membersConfPath = __DIR__ . '/../../config/members.php';
+        $members = is_file($membersConfPath) ? include $membersConfPath : [];
 
         if (!$members) {
             echo '<div class="alert alert-warning">No hay miembros para mostrar.</div>';
         } else {
-            // Orden natural (A..Z, números bien)
-            natcasesort($members);
-            $members = array_values($members);
+            // Orden alfabético por título visible (o name)
+            uasort($members, function ($a, $b) {
+                $ta = $a['title'] ?? $a['name'] ?? '';
+                $tb = $b['title'] ?? $b['name'] ?? '';
+                return strcasecmp($ta, $tb);
+            });
 
             echo '<div class="row">';
-            $delayBase = 0.3;
-
-            foreach ($members as $i => $file) {
+            $i = 0;
+            foreach ($members as $slug => $m) {
                 if ($i && $i % 4 === 0)
                     echo '</div><div class="row">'; // 4 por fila
-        
-                $delay = number_format($delayBase * ($i % 4), 1) . 's';
-                $html = @file_get_contents($file) ?: '';
+                $i++;
 
-                // Asegurar clases 'wow fadeInUp' en el PRIMER class=""
-                $html = preg_replace_callback('/class="([^"]*)"/', function ($m) {
-                    $classes = ' ' . $m[1] . ' ';
-                    foreach (['wow', 'fadeInUp'] as $c) {
-                        if (strpos($classes, ' ' . $c . ' ') === false)
-                            $classes .= ' ' . $c;
-                    }
-                    return 'class="' . trim($classes) . '"';
-                }, $html, 1);
-
-                // data-wow-delay en el primer <div ...>
-                if (strpos($html, 'data-wow-delay=') !== false) {
-                    $html = preg_replace('/data-wow-delay="[^"]*"/', 'data-wow-delay="' . $delay . '"', $html, 1);
-                } else {
-                    $html = preg_replace('/<div(\s+[^>]*)?>/', '<div$1 data-wow-delay="' . $delay . '">', $html, 1);
-                }
-
-                // Normalizar rutas relativas a absolutas (img/js/css) usando base_url()
-                $base = rtrim(base_url(), '/') . '/';
-                // src/href que empiezan por img|js|css
-                $html = preg_replace('#\b(src|href)=["\'](img|js|css)/#i', '$1="' . $base . '$2/', $html);
-                // url(img/...) en estilos inline
-                $html = preg_replace('#url\((["\']?)(img/[^)\'"]+)\1\)#i', 'url($1' . $base . '$2$1)', $html);
-
-                echo $html;
+                $title = $m['title'] ?? $m['name'] ?? ucfirst(str_replace('-', ' ', $slug));
+                $photo = $m['photo'] ?? "/img/members/$slug.png";
+                $href = '/miembros/' . rawurlencode($slug);
+                $delay = number_format(0.3 * (($i - 1) % 4), 1) . 's';
+                ?>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="practice-item margin-bottom-30 wow fadeInUp " data-wow-delay="<?= htmlspecialchars($delay) ?>">
+                        <img src="<?= htmlspecialchars(ltrim($photo, '/')) ?>" class="img-responsive"
+                            alt="<?= htmlspecialchars($title) ?>" />
+                        <a href="<?= htmlspecialchars($href) ?>">
+                            <h4><?= htmlspecialchars($title) ?> <i class="fa fa-angle-double-right"></i></h4>
+                        </a>
+                    </div>
+                </div>
+                <?php
             }
-            echo '</div>'; // cierra la última row
+            echo '</div>';
         }
         ?>
+
+
 
     </div>
 </div>

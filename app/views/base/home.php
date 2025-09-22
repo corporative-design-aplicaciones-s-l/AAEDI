@@ -258,10 +258,14 @@
       <p>La AAEDI surge como respuesta a esta necesidad, con el propósito de:</p>
 
       <ul class="icon-list">
-        <li><i class="fa fa-check-circle"></i> Unificar criterios y buenas prácticas...</li>
-        <li><i class="fa fa-check-circle"></i> Proteger los derechos de los compradores...</li>
-        <li><i class="fa fa-check-circle"></i> Promover la excelencia profesional...</li>
-        <li><i class="fa fa-check-circle"></i> Servir de punto de encuentro...</li>
+        <li><i class="fa fa-check-circle"></i> Unificar criterios y buenas prácticas entre los abogados
+          expertos en derecho inmobiliario.</li>
+        <li><i class="fa fa-check-circle"></i> Proteger los derechos de los compradores extranjeros,
+          aportando seguridad y confianza en cada operación.</li>
+        <li><i class="fa fa-check-circle"></i> Promover la excelencia profesional mediante formación
+          continua, ética y calidad en el ejercicio.</li>
+        <li><i class="fa fa-check-circle"></i> Servir de punto de encuentro entre abogados,
+          instituciones públicas, notarías, registros y agentes del sector.</li>
       </ul>
 
       <p class="margin-top-15">Comprar, vender o alquilar un inmueble implica riesgos legales...</p>
@@ -307,26 +311,79 @@
       </div>
     </div>
 
-    <!-- Ajusta la acción a tu ruta real del backend -->
-    <form action="<?= url('/contacto') ?>" method="post" class="ajax-form form-main">
+    <!--  -->
+    <?php
+    if (session_status() === PHP_SESSION_NONE)
+      session_start();
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
+    ?>
+    <form action="<?= url('/home/submit') ?>" method="post" class="ajax-form form-main" id="home-contact-form"
+      novalidate>
       <div class="row">
-        <div class="col-sm-4"><input name="name" placeholder="Nombre" class="wow fadeInLeft" type="text"></div>
-        <div class="col-sm-4"><input name="phone" placeholder="Tel&eacute;fono" class="wow fadeInDown" type="text">
+        <div class="col-sm-3">
+          <input name="name" placeholder="Nombre *" class="wow fadeInLeft" type="text" required>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
+          <input name="email" placeholder="Email *" class="wow fadeInDown" type="email" required inputmode="email"
+            autocomplete="email">
+        </div>
+        <div class="col-sm-3">
+          <input name="phone" placeholder="Teléfono" class="wow fadeInDown" type="tel" inputmode="tel"
+            autocomplete="tel">
+        </div>
+        <div class="col-sm-3">
           <div class="custom-select wow fadeInRight">
             <i class="fa fa-angle-down"></i>
-            <select name="reason_for_contact">
-              <option value="">Tema a tratar</option>
-              <option>Pedir Cita</option>
-              <option>Información</option>
-              <option>Hablar con un abogado</option>
+            <select name="reason_for_contact" required>
+              <option value="">Tema a tratar *</option>
+              <option value="Pedir Cita">Pedir Cita</option>
+              <option value="Información">Información</option>
+              <option value="Hablar con un abogado">Hablar con un abogado</option>
             </select>
           </div>
         </div>
       </div>
-      <textarea name="message" class="wow fadeInUp" placeholder="Comentarios"></textarea>
-      <div class="text-center"><button type="submit">Enviar</button></div>
+
+      <textarea name="message" class="wow fadeInUp" placeholder="Comentarios" rows="5"></textarea>
+
+      <!-- Honeypot -->
+      <input type="text" name="website" autocomplete="off" tabindex="-1"
+        style="position:absolute;left:-9999px;height:0;width:0;opacity:0">
+
+      <!-- CSRF -->
+      <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+
+      <div class="text-center">
+        <button type="submit">Enviar</button>
+      </div>
+
+      <div id="home-contact-status" class="text-center mt-2" role="status" aria-live="polite"></div>
     </form>
   </div>
 </div>
+
+<script>
+  document.getElementById('home-contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const status = document.getElementById('home-contact-status');
+    status.textContent = 'Enviando...';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        credentials: 'same-origin'
+      });
+      const data = await res.json();
+      if (data.ok) {
+        status.textContent = '¡Mensaje enviado! Te hemos enviado un acuse de recibo.';
+        form.reset();
+      } else {
+        status.textContent = 'Error: ' + (data.error || 'No se pudo enviar');
+      }
+    } catch (err) {
+      status.textContent = 'Error de red. Inténtalo de nuevo.';
+    }
+  });
+</script>

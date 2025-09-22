@@ -20,3 +20,8 @@ function url(string $path = ''): string
 {
   return rtrim(base_url(), '/') . '/' . ltrim($path, '/');
 }
+
+function member_url(string $slug): string
+{
+  return '/public/miembros/' . rawurlencode($slug);
+}

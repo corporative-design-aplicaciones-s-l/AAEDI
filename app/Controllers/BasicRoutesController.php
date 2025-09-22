@@ -24,8 +24,8 @@ class BasicRoutesController
   public function miembros(): void
   {
     View::render('base/miembros', [
-      'title' => 'Filosofía — AAEDI',
-      'bodyClass' => 'filosofia'
+      'title' => 'Miembros — AAEDI',
+      'bodyClass' => 'miembros'
     ]);
   }
 
