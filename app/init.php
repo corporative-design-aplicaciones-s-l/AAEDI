@@ -15,4 +15,5 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 define('VIEW_PATH', BASE_PATH . '/app/views');
 define('STORAGE_PATH', BASE_PATH . '/storage');
 require BASE_PATH . '/app/helpers/url.php';
+require BASE_PATH . '/app/config/auth.php';
 
