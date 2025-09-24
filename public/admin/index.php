@@ -2,11 +2,11 @@
 define('BASE_PATH', dirname(__DIR__));   // raíz del proyecto
 
 session_start();
-require BASE_PATH . '/src/Support/Config.php';
-require BASE_PATH . '/src/Core/DB.php';
-require BASE_PATH . '/app/config/auth.php';
-require BASE_PATH . '/app/controllers/AuthController.php';
-require BASE_PATH . '/app/controllers/MemberController.php';
+require BASE_PATH . '/../src/Support/Config.php';
+require BASE_PATH . '/../src/Core/DB.php';
+require BASE_PATH . '/../app/config/auth.php';
+require BASE_PATH . '/../app/controllers/AuthController.php';
+require BASE_PATH . '/../app/controllers/MemberController.php';
 
 $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $uri = preg_replace('#^admin/?#', '', $uri); // quitar prefijo admin
