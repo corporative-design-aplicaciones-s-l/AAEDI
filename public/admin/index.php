@@ -8,8 +8,8 @@ error_log('__DIR__ = ' . __DIR__);
 error_log('APP = ' . $APP);
 
  session_start();
-require $APP . '/src/Support/Config.php';
-require $APP . '/src/Core/DB.php';
+// require $APP . '/src/Support/Config.php';
+// require $APP . '/src/Core/DB.php';
 require $APP . '/app/config/auth.php';
 require $APP . '/app/controllers/AuthController.php';
 require $APP . '/app/controllers/MemberController.php';
