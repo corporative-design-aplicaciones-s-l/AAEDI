@@ -1,6 +1,6 @@
 <?php
 session_start();
-$ROOT = dirname(__DIR__, 2);           // .../public
+$ROOT = dirname(__DIR__, 1);           // .../public
 $APP  = dirname($ROOT);                // raiz proyecto
 require $APP . '/src/Support/Config.php';
 require $APP . '/src/Core/DB.php';
