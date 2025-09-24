@@ -333,11 +333,10 @@
     </div>
 
     <div class="about-hero text-center">
-      <img src="<?= asset('img/home/01/1.jpg') ?>" class="img-responsive about-hero-img" alt="AAEDI">
+      <img src="<?= asset('img/home/01/02.jpg') ?>" class="img-responsive about-hero-img" alt="AAEDI">
     </div>
 
     <div class="about-prose card-plain">
-      <!-- (tu texto intacto) -->
       <p>
         La Asociación de Abogados Expertos en Derecho Inmobiliario (AAEDI) nace con la misión de
         aunar fuerzas entre los profesionales especializados en el ámbito inmobiliario y de garantizar

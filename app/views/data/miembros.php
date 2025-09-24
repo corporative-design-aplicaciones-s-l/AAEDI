@@ -162,7 +162,7 @@ return [
     'logo'    => 'img/members/sgm.png',
     'claim'   => '',
     'nombre'  => 'SGM ABOGADOS',
-    'desc'    => 'Inmobiliario, Sucesiones, Extranjería y Fiscalidad para clientes internacionales: compraventas, testamentos, NIE, residencia y representación fiscal.',
+    'desc'    => 'Despacho experto en Derecho Inmobiliario, Sucesiones, Extranjería y Fiscalidad para clientes internacionales: compraventas, testamentos, NIE, residencia y representación fiscal. <br> Oficina en Benijófar y San Javier',
     'tel'     => '965 72 48 71',
     'web'     => 'https://sgmlegalspain.com/',
     'web_txt' => 'www.sgmlegalspain.com',
