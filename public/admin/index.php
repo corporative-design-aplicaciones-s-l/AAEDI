@@ -1,4 +1,5 @@
 <?php
+define('BASE_PATH', dirname(__DIR__));   // raíz del proyecto
 
 session_start();
 require BASE_PATH . '/src/Support/Config.php';
