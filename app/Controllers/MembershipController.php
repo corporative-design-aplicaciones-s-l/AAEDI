@@ -1,8 +1,6 @@
 <?php
 namespace App\Controllers;
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 use App\Core\DB;
 use App\Helpers\Mailer;
 

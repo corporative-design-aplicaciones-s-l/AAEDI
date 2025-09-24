@@ -1,5 +1,5 @@
 <?php
-$ROOT = dirname(__DIR__);               // /var/www/.../aaedi.maxserratosa.es
+$ROOT = dirname(__DIR__);               
 require "$ROOT/vendor/autoload.php";
 
 define('BASE_PATH', dirname(__DIR__));   // raíz del proyecto
