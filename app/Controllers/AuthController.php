@@ -31,7 +31,7 @@ class AuthController
             $u = $st->fetch();
             if ($u && password_verify($pass, $u['password'])) {
                 $_SESSION['uid'] = $u['id'];
-                header('Location: /admin/members');
+                header('Location: /admin');
                 exit;
             }
             $error = 'Credenciales inválidas';
