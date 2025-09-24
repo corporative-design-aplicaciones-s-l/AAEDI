@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
 
+use App\Core\DB;
+
 class MemberController
 {
     public function show(array $params)
@@ -43,17 +45,15 @@ class MemberController
     }
     public static function create()
     {
-        \require_login();
         return view('members_form', ['row' => null]);
     }
     public static function store()
     {
-        \require_login();
         if (!\csrf_ok()) {
             http_response_code(419);
             exit('CSRF');
         }
-        global $pdo;
+        $pdo = DB::conn();
         $st = $pdo->prepare("INSERT INTO members(slug,logo,claim,nombre,`desc`,tel,web,web_txt,mail,visible,sort)
       VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         $st->execute([
@@ -74,8 +74,7 @@ class MemberController
     }
     public static function edit($id)
     {
-        \require_login();
-        global $pdo;
+        $pdo = DB::conn();
         $st = $pdo->prepare("SELECT * FROM members WHERE id=?");
         $st->execute([$id]);
         $row = $st->fetch();
@@ -87,16 +86,15 @@ class MemberController
     }
     public static function update($id)
     {
-        \require_login();
         if (!\csrf_ok()) {
             http_response_code(419);
             exit('CSRF');
         }
-        global $pdo;
+        $pdo = DB::conn();
         $st = $pdo->prepare("UPDATE members SET slug=?,logo=?,claim=?,nombre=?,`desc`=?,tel=?,web=?,web_txt=?,mail=?,visible=?,sort=? WHERE id=?");
         $st->execute([
             trim($_POST['slug']),
-            trim($_POST['logo'] ?? ''),
+            trim(string: $_POST['logo'] ?? ''),
             trim($_POST['claim'] ?? ''),
             trim($_POST['nombre']),
             trim($_POST['desc'] ?? ''),
@@ -113,16 +111,14 @@ class MemberController
     }
     public static function toggle($id)
     {
-        \require_login();
-        global $pdo;
+        $pdo = DB::conn();
         $pdo->prepare("UPDATE members SET visible=1-visible WHERE id=?")->execute([$id]);
         header('Location: /admin/members');
         exit;
     }
     public static function delete($id)
     {
-        \require_login();
-        global $pdo;
+        $pdo = DB::conn();
         $pdo->prepare("DELETE FROM members WHERE id=?")->execute([$id]);
         header('Location: /admin/members');
         exit;
