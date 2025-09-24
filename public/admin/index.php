@@ -7,6 +7,7 @@ require BASE_PATH . '/src/Core/DB.php';
 require BASE_PATH . '/app/config/auth.php';
 require BASE_PATH . '/app/Controllers/AuthController.php';
 require BASE_PATH . '/app/Controllers/MemberController.php';
+require BASE_PATH . '/../app/Controllers/Admin/DataController.php';
 
 $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $uri = preg_replace('#^admin/?#', '', $uri); // quitar prefijo admin
