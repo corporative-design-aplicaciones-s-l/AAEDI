@@ -4,7 +4,7 @@ if (session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
 // Sube 3 niveles: /public/admin → /public → /httpdocs
-$APP = dirname(__DIR__, 3);
+$APP = dirname(__DIR__, 2);
 
 // Verificaciones defensivas (útil mientras pruebas):
 if (!is_dir($APP . '/app/config')) {
