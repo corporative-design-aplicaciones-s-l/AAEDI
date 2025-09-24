@@ -228,7 +228,7 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
         </div>
 
         <div class="container">
-            <form id="join-form" action="/public/asociarse/enviar" method="post" novalidate>
+            <form id="join-form" action="/asociarse/enviar" method="post" novalidate>
                 <div class="row my-5 g-4">
                     <div class="col-md-6">
                         <label>Nombre y apellidos*</label>
