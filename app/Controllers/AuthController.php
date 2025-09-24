@@ -16,7 +16,7 @@ class AuthController
 
         require dirname(__DIR__) . '/views/admin/login.php';
     }
-    
+
     public static function login()
     {
         $pdo = DB::conn();
@@ -43,7 +43,7 @@ class AuthController
     public static function logout()
     {
         session_destroy();
-        header('Location: /admin/login');
+        header('Location: /login');
         exit;
     }
 }

@@ -30,8 +30,8 @@ class MemberController
 
     public static function index()
     {
-        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
-        if (empty($_SESSION['uid'])) { header('Location: /admin/login'); exit; }
+        // if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        // if (empty($_SESSION['uid'])) { header('Location: /admin/login'); exit; }
 
         // vista mínima para probar
         echo '<!doctype html><meta charset="utf-8"><title>Admin</title>
