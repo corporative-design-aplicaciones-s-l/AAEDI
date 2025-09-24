@@ -19,7 +19,7 @@ Router::get('/contacto', [BasicRoutesController::class, 'contacto']);
 Router::post('/contacto', [BasicRoutesController::class, 'sendContactForm']);
 Router::post('/asociarse/enviar', [MembershipController::class, 'submit']);
 Router::post('/home/submit', [ContactController::class, 'submit']);
-Router::post('/contact/submit', [ContactController::class, 'submitPage']);
+Router::post('/contacto/submit', [ContactController::class, 'submitPage']);
 Router::post('/member/{slug}/submit', [ContactController::class, 'memberContact']);
 
 // Rutas páginas de miembros:
