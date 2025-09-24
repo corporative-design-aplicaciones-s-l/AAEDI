@@ -82,6 +82,91 @@
     /* microajuste; pon 0–3px según tipografía */
     color: #0b5ab8;
   }
+
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+
+  .member-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 28px 22px;
+    border: 1px solid #eef0f4;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .04);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .member-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .07);
+  }
+
+  .member-card__logo img {
+    max-width: 68%;
+    height: auto;
+    object-fit: contain;
+    filter: saturate(0.9);
+    margin-bottom: 10px;
+  }
+
+  .member-card__claim {
+    display: block;
+    font-size: .85rem;
+    letter-spacing: .20em;
+    color: #7e3bd0;
+    /* tu morado */
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .member-card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    color: #412966;
+    margin: 6px 0 12px;
+  }
+
+  .member-card__desc {
+    color: #5b5e6a;
+    line-height: 1.5;
+    margin: 0 0 14px;
+    min-height: 64px;
+    /* estabiliza alturas */
+  }
+
+  .member-card__contact {
+    list-style: none;
+    padding: 0;
+    margin-top: auto;
+    /* empuja contactos al fondo: alturas iguales */
+    width: 100%;
+  }
+
+  .member-card__contact li {
+    margin: 6px 0;
+    color: #364152;
+    word-break: break-word;
+  }
+
+  .member-card__contact i {
+    width: 18px;
+    text-align: center;
+    margin-right: 8px;
+  }
+
+  @media (max-width:480px) {
+    .member-card__logo img {
+      max-width: 72%;
+    }
+  }
 </style>
 
 <!-- WARP SECTION -->
@@ -253,8 +338,19 @@
 
     <div class="about-prose card-plain">
       <!-- (tu texto intacto) -->
-      <p>La Asociación de Abogados Expertos en Derecho Inmobiliario (AAEDI) nace...</p>
-      <p>El mercado inmobiliario español es uno de los más dinámicos de Europa...</p>
+      <p>
+        La Asociación de Abogados Expertos en Derecho Inmobiliario (AAEDI) nace con la misión de
+        aunar fuerzas entre los profesionales especializados en el ámbito inmobiliario y de garantizar
+        a los compradores extranjeros en España un servicio integral, uniforme y con un mínimo de
+        garantías y profesionalidad.
+      </p>
+      <p>
+        El mercado inmobiliario español es uno de los más dinámicos de Europa y atrae cada año a miles
+        de compradores de otros países. Sin embargo, esta realidad también ha puesto de manifiesto la
+        necesidad de contar con profesionales altamente cualificados, capaces de ofrecer un
+        asesoramiento legal sólido, especializado y adaptado a las particularidades de cada cliente
+        extranjero.
+      </p>
       <p>La AAEDI surge como respuesta a esta necesidad, con el propósito de:</p>
 
       <ul class="icon-list">
@@ -268,8 +364,18 @@
           instituciones públicas, notarías, registros y agentes del sector.</li>
       </ul>
 
-      <p class="margin-top-15">Comprar, vender o alquilar un inmueble implica riesgos legales...</p>
-      <p class="margin-top-15">Nuestro objetivo no es solo defender los intereses...</p>
+      <p class="margin-top-15">
+        Comprar, vender o alquilar un inmueble implica riesgos legales importantes. Solo un abogado
+        especializado en Derecho inmobiliario puede asesorarte con garantías. Frente al intrusismo y la
+        desinformación, protegemos tus decisiones con conocimiento jurídico, ética profesional y total
+        independencia.
+      </p>
+
+      <p class="margin-top-15">
+        Nuestro objetivo no es solo defender los intereses de los profesionales que forman parte de la
+        Asociación, sino también contribuir a la seguridad jurídica del mercado inmobiliario español,
+        fortaleciendo su reputación internacional y aportando valor a la sociedad.
+      </p>
 
       <div class="text-center">
         <a href="<?= url('/filosofia') ?>" class="btn btn-primary">Nuestra Filosofía</a>
@@ -278,28 +384,57 @@
   </div>
 </div>
 
-<!-- ::: MIEMBROS ::: -->
+<!-- ::: MIEMBROS (MOSAICO) ::: -->
 <div class="padding-top-100 home-lawyers padding-bottom-100 wow fadeInUp" data-wow-delay=".1s">
-  <div class="container" style="overflow:hidden;">
-    <div class="faq-head text-center margin-bottom-100">
+  <div class="container">
+    <div class="faq-head text-center margin-bottom-60">
       <div class="heading-title">Miembros</div>
     </div>
-    <div class="lawyer-carousel-wrap">
-      <div class="prev3"><i class="fa fa-angle-left"></i></div>
-      <div class="next3"><i class="fa fa-angle-right"></i></div>
-      <div class="lawyer-carousel">
-        <?php include VIEW_PATH . '/partials/index_members/miembros-a.html' ?>
-        <?php include VIEW_PATH . '/partials/index_members/miembros-b.html' ?>
-        <?php include VIEW_PATH . '/partials/index_members/miembros-e.html' ?>
-        <?php include VIEW_PATH . '/partials/index_members/miembros-f.html' ?>
-        <?php include VIEW_PATH . '/partials/index_members/miembros-i.html' ?>
-        <?php include VIEW_PATH . '/partials/index_members/miembros-m.html' ?>
-        <?php include VIEW_PATH . '/partials/index_members/miembros-n.html' ?>
-        <?php include VIEW_PATH . '/partials/index_members/miembros-s.html' ?>
-      </div>
+
+    <?php
+    $items = require VIEW_PATH . '/data/miembros.php';
+    // Orden aleatorio en cada carga (equidad)
+    shuffle($items);
+    ?>
+
+    <div class="members-grid">
+      <?php foreach ($items as $m): ?>
+        <article class="member-card">
+          <div class="member-card__logo">
+            <img loading="lazy" src="<?= htmlspecialchars($m['logo']) ?>"
+              alt="<?= htmlspecialchars(strtolower($m['nombre']) . ' logo') ?>">
+          </div>
+
+          <?php if (!empty($m['claim'])): ?>
+            <cite class="member-card__claim"><?= $m['claim'] ?></cite>
+          <?php endif; ?>
+
+          <h3 class="member-card__title"><?= $m['nombre'] ?></h3>
+
+          <?php if (!empty($m['desc'])): ?>
+            <p class="member-card__desc"><?= $m['desc'] ?></p>
+          <?php endif; ?>
+
+          <ul class="member-card__contact">
+            <?php if (!empty($m['tel'])): ?>
+              <li><i class="fa fa-phone"></i> <a href="tel:<?= preg_replace('/\s+/', '', $m['tel']) ?>"><?= $m['tel'] ?></a>
+              </li>
+            <?php endif; ?>
+            <?php if (!empty($m['web'])): ?>
+              <li><i class="fa fa-globe"></i> <a href="<?= htmlspecialchars($m['web']) ?>" target="_blank"
+                  rel="noopener"><?= $m['web_txt'] ?? $m['web'] ?></a></li>
+            <?php endif; ?>
+            <?php if (!empty($m['mail'])): ?>
+              <li><i class="fa fa-envelope"></i> <a href="mailto:<?= htmlspecialchars($m['mail']) ?>"><?= $m['mail'] ?></a>
+              </li>
+            <?php endif; ?>
+          </ul>
+        </article>
+      <?php endforeach; ?>
     </div>
   </div>
 </div>
+
 
 <!-- CONSULTA -->
 <div class="bg-gray padding-vertical-100 attorney-content">
@@ -386,4 +521,131 @@
       status.textContent = 'Error de red. Inténtalo de nuevo.';
     }
   });
+</script>
+
+<script>(function () {
+
+    // Contenido de cada servicio
+    const serviceData = {
+      conveyancing: {
+        title: "Conveyancing · Compra y venta",
+        img: "img/practise/03/conveyancing.png",
+        desc: "Acompañamiento integral en operaciones de compra y venta: due diligence, arras, coordinación con notaría y registro, cálculo de impuestos y cambio de suministros."
+      }
+
+      ,
+      contratos: {
+        title: "Preparación de contratos de compraventa",
+        img: "img/practise/03/contratos.png",
+        desc: "Redacción y revisión de contratos privados y opciones de compra, cláusulas de arras, condiciones suspensivas y garantías, adaptados a su caso."
+      }
+
+      ,
+      testamentos: {
+        title: "Testamentos",
+        img: "img/practise/03/testamento.jpg",
+        desc: "Redacción y actualización de testamentos, planificación sucesoria a medida y coordinación con notaría para firma y protocolización."
+      }
+
+      ,
+      nie: {
+        title: "Obtención de NIE o Residencia",
+        img: "img/practise/03/nie.png",
+        desc: "Tramitación de NIE para no residentes y asesoramiento en procedimientos de residencia (UE y no UE): citas, formularios, tasas y documentación."
+      }
+
+      ,
+      hipoteca: {
+        title: "Solicitudes de hipoteca",
+        img: "img/practise/03/hipoteca.png",
+        desc: "Asesoramiento en financiación: comparación de ofertas, revisión de FEIN y FIAE, coordinación con la entidad y la notaría hasta la firma."
+      }
+
+      ,
+      donaciones: {
+        title: "Herencias y donaciones",
+        img: "img/practise/03/donaciones.jpg",
+        desc: "Planificación y tramitación de herencias y donaciones, aceptación y partición de herencia, liquidación del ISD y plusvalía municipal, y coordinación notarial y registral ante la Administración."
+      }
+
+      ,
+      impuestos: {
+        title: "Preparación y pago de impuestos de residentes y no residentes",
+        img: "img/practise/03/impuestos.jpg",
+        desc: "Preparación y presentación de impuestos para residentes y no residentes (IRPF/IRNR, patrimonio o rentas de alquiler), representación ante la AEAT, cálculo, domiciliación y gestión de pagos."
+      }
+
+      ,
+      licencia: {
+        title: "Solicitud de licencia turística y preparación de contratos",
+        img: "img/practise/03/licenciaturistica.jpg",
+        desc: "Tramitación de licencia turística y alta en el registro correspondiente, coordinación con técnico colegiado y Ayuntamiento, y redacción de contratos de arrendamiento de temporada/vacacional."
+      }
+
+      ,
+      sl: {
+        title: "Creación de empresas SL en España",
+        img: "img/practise/03/sl.jpg",
+        desc: "Constitución de sociedades limitadas: reserva de denominación, estatutos y escritura, NIF provisional/definitivo, alta censal, y coordinación con notaría y Registro Mercantil hasta la inscripción."
+      }
+
+    }
+
+      ;
+
+    // Elementos del modal
+    const modal = document.getElementById("serviceModal");
+    const modalImg = document.getElementById("svcModalImg");
+    const modalTitle = document.getElementById("svcModalTitle");
+    const modalDesc = document.getElementById("svcModalDesc");
+
+    function openModal(data) {
+      // Rellena
+      modalImg.src = data.img;
+      modalImg.alt = data.title;
+      modalTitle.textContent = data.title;
+      modalDesc.textContent = data.desc;
+
+      // Muestra
+      modal.classList.add("is-visible");
+      document.body.classList.add("svc-modal-open");
+
+      // Enfocar el botón cerrar para accesibilidad
+      const closeBtn = modal.querySelector(".svc-modal__close");
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-visible");
+      document.body.classList.remove("svc-modal-open");
+      // Limpia la imagen para evitar flashes si cambias rápido
+      modalImg.src = "";
+      modalImg.alt = "";
+    }
+
+    // Listeners de las cards
+    document.querySelectorAll(".service-card").forEach(a => {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const key = this.dataset.service;
+
+        if (key && serviceData[key]) {
+          openModal(serviceData[key]);
+        }
+      });
+    });
+
+    // Cerrar por overlay o botones con data-close
+    modal.addEventListener("click", function (e) {
+      if (e.target.hasAttribute("data-close")) closeModal();
+    });
+
+    // Cerrar con Escape
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("is-visible")) {
+        closeModal();
+      }
+    });
+  })();
+
 </script>

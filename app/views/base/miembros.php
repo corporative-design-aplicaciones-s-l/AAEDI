@@ -28,8 +28,8 @@
             echo '<div class="row">';
             $i = 0;
             foreach ($members as $slug => $m) {
-                if ($i && $i % 4 === 0)
-                    echo '</div><div class="row">'; // 4 por fila
+                if ($i && $i % 3 === 0)
+                    echo '</div><div class="row">'; // 3 por fila
                 $i++;
 
                 $title = $m['title'] ?? $m['name'] ?? ucfirst(str_replace('-', ' ', $slug));
@@ -37,7 +37,7 @@
                 $href = '/miembros/' . rawurlencode($slug);
                 $delay = number_format(0.3 * (($i - 1) % 4), 1) . 's';
                 ?>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                     <div class="practice-item margin-bottom-30 wow fadeInUp " data-wow-delay="<?= htmlspecialchars($delay) ?>">
                         <img src="<?= htmlspecialchars(ltrim($photo, '/')) ?>" class="img-responsive"
                             alt="<?= htmlspecialchars($title) ?>" />
