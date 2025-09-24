@@ -32,16 +32,16 @@ class MemberController
 
     public static function index()
     {
-        // if (session_status() !== PHP_SESSION_ACTIVE) session_start();
-        // if (empty($_SESSION['uid'])) { header('Location: /admin/login'); exit; }
-
-        // vista mínima para probar
-        echo '<!doctype html><meta charset="utf-8"><title>Admin</title>
-              <div style="font:14px/1.4 system-ui;padding:24px">
-                <h1>Backoffice AAEDI</h1>
-                <p>¡Login OK! Esta es la portada del admin.</p>
-                <p><a href="/admin/logout">Salir</a></p>
-              </div>';
+        $pdo = DB::conn();
+        $q = $_GET['q'] ?? '';
+        if ($q) {
+            $st = $pdo->prepare("SELECT * FROM members WHERE nombre LIKE ? OR slug LIKE ? ORDER BY sort, nombre");
+            $st->execute(["%$q%", "%$q%"]);
+        } else {
+            $st = $pdo->query("SELECT * FROM members ORDER BY sort, nombre");
+        }
+        $rows = $st->fetchAll();
+        return view('members_list', compact('rows', 'q'));
     }
     public static function create()
     {
@@ -94,7 +94,7 @@ class MemberController
         $st = $pdo->prepare("UPDATE members SET slug=?,logo=?,claim=?,nombre=?,`desc`=?,tel=?,web=?,web_txt=?,mail=?,visible=?,sort=? WHERE id=?");
         $st->execute([
             trim($_POST['slug']),
-            trim(string: $_POST['logo'] ?? ''),
+            trim($_POST['logo'] ?? ''),
             trim($_POST['claim'] ?? ''),
             trim($_POST['nombre']),
             trim($_POST['desc'] ?? ''),
