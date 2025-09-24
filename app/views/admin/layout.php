@@ -10,8 +10,8 @@
 
 <body class="bg-light">
     <nav class="navbar navbar-dark bg-dark mb-4">
-        <div class="container"><a class="navbar-brand" href="/admin/members">AAEDI</a>
-            <a class="btn btn-outline-light btn-sm" href="/admin/logout">Salir</a>
+        <div class="container"><a class="navbar-brand" href="/admin">AAEDI</a>
+            <a class="btn btn-outline-light btn-sm" href="/logout">Salir</a>
         </div>
     </nav>
     <div class="container"><?= $content ?? '' ?></div>

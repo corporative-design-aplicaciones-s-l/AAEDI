@@ -16,6 +16,7 @@ class AuthController
 
         require dirname(__DIR__) . '/views/admin/login.php';
     }
+    
     public static function login()
     {
         $pdo = DB::conn();
