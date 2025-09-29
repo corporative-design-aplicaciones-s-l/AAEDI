@@ -16,6 +16,8 @@ class MemberController
             echo 'Miembro no encontrado';
             return;
         }
+        $slug = $this->resolveSlug($slug, $members) ?? '';
+
 
         $member = $members[$slug];
         $viewName = $member['view'] ?? $slug;
@@ -30,97 +32,19 @@ class MemberController
         include $viewFile;
     }
 
-    public static function index()
+    private function resolveSlug(string $seg, array $members): ?string
     {
-        $pdo = DB::conn();
-        $q = $_GET['q'] ?? '';
-        if ($q) {
-            $st = $pdo->prepare("SELECT * FROM members WHERE nombre LIKE ? OR slug LIKE ? ORDER BY sort, nombre");
-            $st->execute(["%$q%", "%$q%"]);
-        } else {
-            $st = $pdo->query("SELECT * FROM members ORDER BY sort, nombre");
+        $seg = strtolower(urldecode($seg));
+        if (isset($members[$seg]))
+            return $seg;
+        foreach ($members as $slug => $m) {
+            if (strtolower($slug) === $seg)
+                return $slug;
+            $title = $m['title'] ?? $m['name'] ?? $slug;
+            $tSlug = strtolower(preg_replace('~[^a-z0-9]+~', '-', iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $title)));
+            if ($tSlug === $seg)
+                return $slug;
         }
-        $rows = $st->fetchAll();
-        return view('members_list', compact('rows', 'q'));
-    }
-    public static function create()
-    {
-        return view('members_form', ['row' => null]);
-    }
-    public static function store()
-    {
-        if (!\csrf_ok()) {
-            http_response_code(419);
-            exit('CSRF');
-        }
-        $pdo = DB::conn();
-        $st = $pdo->prepare("INSERT INTO members(slug,logo,claim,nombre,`desc`,tel,web,web_txt,mail,visible,sort)
-      VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-        $st->execute([
-            trim($_POST['slug']),
-            trim($_POST['logo'] ?? ''),
-            trim($_POST['claim'] ?? ''),
-            trim($_POST['nombre']),
-            trim($_POST['desc'] ?? ''),
-            trim($_POST['tel'] ?? ''),
-            trim($_POST['web'] ?? ''),
-            trim($_POST['web_txt'] ?? ''),
-            trim($_POST['mail'] ?? ''),
-            isset($_POST['visible']) ? 1 : 0,
-            (int) ($_POST['sort'] ?? 1000),
-        ]);
-        header('Location: /admin/members');
-        exit;
-    }
-    public static function edit($id)
-    {
-        $pdo = DB::conn();
-        $st = $pdo->prepare("SELECT * FROM members WHERE id=?");
-        $st->execute([$id]);
-        $row = $st->fetch();
-        if (!$row) {
-            http_response_code(404);
-            exit('Not found');
-        }
-        return view('members_form', compact('row'));
-    }
-    public static function update($id)
-    {
-        if (!\csrf_ok()) {
-            http_response_code(419);
-            exit('CSRF');
-        }
-        $pdo = DB::conn();
-        $st = $pdo->prepare("UPDATE members SET slug=?,logo=?,claim=?,nombre=?,`desc`=?,tel=?,web=?,web_txt=?,mail=?,visible=?,sort=? WHERE id=?");
-        $st->execute([
-            trim($_POST['slug']),
-            trim($_POST['logo'] ?? ''),
-            trim($_POST['claim'] ?? ''),
-            trim($_POST['nombre']),
-            trim($_POST['desc'] ?? ''),
-            trim($_POST['tel'] ?? ''),
-            trim($_POST['web'] ?? ''),
-            trim($_POST['web_txt'] ?? ''),
-            trim($_POST['mail'] ?? ''),
-            isset($_POST['visible']) ? 1 : 0,
-            (int) ($_POST['sort'] ?? 1000),
-            $id
-        ]);
-        header('Location: /admin/members');
-        exit;
-    }
-    public static function toggle($id)
-    {
-        $pdo = DB::conn();
-        $pdo->prepare("UPDATE members SET visible=1-visible WHERE id=?")->execute([$id]);
-        header('Location: /admin/members');
-        exit;
-    }
-    public static function delete($id)
-    {
-        $pdo = DB::conn();
-        $pdo->prepare("DELETE FROM members WHERE id=?")->execute([$id]);
-        header('Location: /admin/members');
-        exit;
+        return null;
     }
 }

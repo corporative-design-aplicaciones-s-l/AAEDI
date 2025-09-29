@@ -16,7 +16,7 @@ $logged = !empty($_SESSION['uid']);
 <body class="bg-light">
     <nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="/admin">AAEDI</a>
+            <a class="navbar-brand" href="/">AAEDI</a>
 
             <?php if ($logged): ?>
                 <div class="d-flex gap-2">

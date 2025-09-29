@@ -36,6 +36,7 @@
                 $photo = $m['photo'] ?? "/img/members/$slug.png";
                 $href = '/miembros/' . rawurlencode($slug);
                 $delay = number_format(0.3 * (($i - 1) % 4), 1) . 's';
+                
                 ?>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                     <div class="practice-item margin-bottom-30 wow fadeInUp " data-wow-delay="<?= htmlspecialchars($delay) ?>">
