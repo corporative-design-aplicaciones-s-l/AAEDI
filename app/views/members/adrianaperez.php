@@ -117,10 +117,10 @@
         <?php
         if (session_status() === PHP_SESSION_NONE)
             session_start();
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
+        $_SESSION['csrf_token'] = $_SESSION['csrf_token'] ?? bin2hex(random_bytes(16));
         ?>
-        <form action="/member/apls-legal/submit" method="post" class="ajax-form form-main" id="member-contact-form"
-            novalidate>
+        <form action="/member/<?= htmlspecialchars($slug) ?>/submit" method="post" class="ajax-form form-main"
+            id="member-contact-form" novalidate>
             <div class="row">
                 <div class="col-sm-3">
                     <input placeholder="Nombre *" type="text" name="name" required>
@@ -165,8 +165,12 @@
                 const status = document.getElementById('member-contact-status');
                 status.textContent = 'Enviando...';
                 try {
-                    const res = await fetch(form.action, { method: 'POST', body: new FormData(form), credentials: 'same-origin' });
-                    const data = await res.json();
+                    const res = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        credentials: 'same-origin',
+                        headers: { 'Accept': 'application/json' } // opcional pero útil
+                    }); const data = await res.json();
                     if (data.ok) { status.textContent = '¡Mensaje enviado! El despacho te contactará pronto.'; form.reset(); }
                     else { status.textContent = 'Error: ' + (data.error || 'No se pudo enviar'); }
                 } catch { status.textContent = 'Error de red. Inténtalo de nuevo.'; }

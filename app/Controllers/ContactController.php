@@ -3,7 +3,9 @@ namespace App\Controllers;
 
 use App\Core\DB;
 use App\Helpers\Mailer;
-use PDO;
+
+$members = include BASE_PATH . '/app/config/members.php';
+$app = include BASE_PATH . '/app/config/app.php';
 
 class ContactController
 {
@@ -208,16 +210,19 @@ class ContactController
         return;
       }
 
-      // Slug de la ruta
+      // Slug
       $slug = trim($params['slug'] ?? '');
+      if ($slug === '')
+        throw new \RuntimeException('Slug vacío');
 
-      // Whitelist de despachos
-      $members = include __DIR__ . '/../config/members.php';
-      if (!isset($members[$slug])) {
+      // Whitelist
+      $members = include BASE_PATH . '/app/config/members.php';
+      if (!isset($members[$slug]))
         throw new \RuntimeException('Despacho no reconocido');
-      }
-      $memberName = $members[$slug]['name'];
-      $memberEmail = $members[$slug]['email'];
+      $memberName = $members[$slug]['name'] ?? ($members[$slug]['title'] ?? $slug);
+      $memberEmail = $members[$slug]['email'] ?? null;
+      if (!$memberEmail)
+        throw new \RuntimeException('Email del despacho no configurado');
 
       // CSRF + honeypot
       if (session_status() === PHP_SESSION_NONE)
@@ -229,7 +234,7 @@ class ContactController
       if (!empty($_POST['website']))
         throw new \RuntimeException('Bot detectado');
 
-      // Datos del formulario
+      // Datos
       $name = trim($_POST['name'] ?? '');
       $email = trim($_POST['email'] ?? '');
       $phone = trim($_POST['phone'] ?? '');
@@ -247,9 +252,9 @@ class ContactController
       $pdo = DB::conn();
       $stmt = $pdo->prepare("
       INSERT INTO aaedi_member_contacts
-        (member_slug,member_name,member_email,name,email,phone,reason_for_contact,message,ip,ua)
+        (member_slug,member_name,member_email,name,email,phone,reason_for_contact,message,ip,ua,created_at)
       VALUES
-        (:slug,:mname,:memail,:name,:email,:phone,:reason,:message,:ip,:ua)
+        (:slug,:mname,:memail,:name,:email,:phone,:reason,:message,:ip,:ua,NOW())
     ");
       $stmt->execute([
         ':slug' => $slug,
@@ -265,10 +270,13 @@ class ContactController
       ]);
       $id = (int) $pdo->lastInsertId();
 
-      // SMTP + payload
-      $app = include __DIR__ . '/../config/app.php';
-      $mc = $app['mail'];
-      $sec = $mc['to']['address'] ?? null; // BCC/duplicado opcional
+      // Mail
+      $app = include BASE_PATH . '/app/config/app.php';
+      $mc = $app['mail'] ?? [];
+      if (empty($mc['from']['address'])) {
+        throw new \RuntimeException('Config mail.from.address ausente');
+      }
+      $sec = $mc['to']['address'] ?? null;
 
       $payload = [
         'id' => $id,
@@ -280,16 +288,10 @@ class ContactController
         'member' => ['slug' => $slug, 'name' => $memberName, 'email' => $memberEmail],
       ];
 
-      // ---- Email al despacho ----
-      $htmlAdmin = Mailer::render('member_contact_admin', $payload);
-      $altAdmin = Mailer::render('member_contact_admin_alt', $payload);
-      // Fallbacks (por si la plantilla no está aún)
-      if ($htmlAdmin === '') {
-        $htmlAdmin = Mailer::render('contact_admin', array_merge($payload, ['name' => $name]));
-      }
-      if ($altAdmin === '') {
-        $altAdmin = Mailer::render('contact_admin_alt', array_merge($payload, ['name' => $name]));
-      }
+      $htmlAdmin = Mailer::render('member_contact_admin', $payload)
+        ?: Mailer::render('contact_admin', array_merge($payload, ['name' => $name]));
+      $altAdmin = Mailer::render('member_contact_admin_alt', $payload)
+        ?: Mailer::render('contact_admin_alt', array_merge($payload, ['name' => $name]));
 
       Mailer::sendHtml(
         $mc,
@@ -301,7 +303,6 @@ class ContactController
         embedLogo: true
       );
 
-      // Copia a Secretaría (opcional)
       if ($sec && filter_var($sec, FILTER_VALIDATE_EMAIL)) {
         Mailer::sendHtml(
           $mc,
@@ -314,15 +315,10 @@ class ContactController
         );
       }
 
-      // ---- Acuse al usuario ----
-      $htmlAck = Mailer::render('member_contact_ack', $payload);
-      $altAck = Mailer::render('member_contact_ack_alt', $payload);
-      if ($htmlAck === '') {
-        $htmlAck = Mailer::render('contact_ack', ['name' => $name, 'id' => $id, 'reason' => $reason]);
-      }
-      if ($altAck === '') {
-        $altAck = Mailer::render('contact_ack_alt', ['name' => $name, 'id' => $id, 'reason' => $reason]);
-      }
+      $htmlAck = Mailer::render('member_contact_ack', $payload)
+        ?: Mailer::render('contact_ack', ['name' => $name, 'id' => $id, 'reason' => $reason]);
+      $altAck = Mailer::render('member_contact_ack_alt', $payload)
+        ?: Mailer::render('contact_ack_alt', ['name' => $name, 'id' => $id, 'reason' => $reason]);
 
       Mailer::sendHtml(
         $mc,
@@ -337,6 +333,8 @@ class ContactController
       echo json_encode(['ok' => true, 'id' => $id]);
 
     } catch (\Throwable $e) {
+      // log opcional
+      error_log('[AAEDI][memberContact] ' . $e->getMessage());
       http_response_code(400);
       echo json_encode(['ok' => false, 'error' => $e->getMessage()]);
     }
