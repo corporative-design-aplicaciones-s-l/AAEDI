@@ -119,7 +119,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/marbascuna.jpg" alt="Maria Del Mar Bascuñana García">
+                <img class="aaedi-avatar" src="img/other/01/marbascunana.jpg" alt="Maria Del Mar Bascuñana García">
                 <h3 class="aaedi-name mt-3 mb-1">Maria Del Mar Bascuñana García</h3>
                 <p class="aaedi-role">Secretaria</p>
             </article>
