@@ -105,23 +105,13 @@
         <img class="aaedi-avatar--xl" src="img/other/01/silviagalve.jpg" alt="Silvia Galve Martí">
         <h3 class="aaedi-name mt-3 mb-1">Silvia Galve Martí</h3>
         <p class="aaedi-role">Presidenta</p>
-
-        <div class="aaedi-bio d-none">
-            <p>Texto de la bio. Se pueden usar <strong>negritas</strong>, enlaces
-                <a href="#">(opcionales)</a>, listas, etc.
-            </p>
-            <ul>
-                <li>Áreas: Inmobiliario, Sucesiones…</li>
-                <li>Idiomas: ES / EN / FR</li>
-            </ul>
-        </div>
     </article>
 
     <!-- Resto de miembros -->
     <div class="row g-4 justify-content-center">
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/1.png" alt="Isabel Montesinos">
+                <img class="aaedi-avatar" src="img/other/01/isabelmontesinos.jpg" alt="Isabel Montesinos">
                 <h3 class="aaedi-name mt-3 mb-1">Isabel Montesinos</h3>
                 <p class="aaedi-role">Vicepresidenta</p>
             </article>
@@ -129,7 +119,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/2.png" alt="Maria Del Mar Bascuñana García">
+                <img class="aaedi-avatar" src="img/other/01/marbascuna.jpg" alt="Maria Del Mar Bascuñana García">
                 <h3 class="aaedi-name mt-3 mb-1">Maria Del Mar Bascuñana García</h3>
                 <p class="aaedi-role">Secretaria</p>
             </article>
@@ -145,7 +135,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/1.png" alt="Alfred Manchón">
+                <img class="aaedi-avatar" src="img/other/01/alfredmanchon.jpg" alt="Alfred Manchón">
                 <h3 class="aaedi-name mt-3 mb-1">Alfred Manchón</h3>
                 <p class="aaedi-role">Vocal</p>
             </article>
@@ -169,7 +159,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/1.png" alt="Pablo M. Gómez Ladrón de Guevara">
+                <img class="aaedi-avatar" src="img/other/01/pabloguevara.jpg" alt="Pablo M. Gómez Ladrón de Guevara">
                 <h3 class="aaedi-name mt-3 mb-1">Pablo M. Gómez<br>Ladrón de Guevara</h3>
                 <p class="aaedi-role">Vocal</p>
             </article>
@@ -217,7 +207,7 @@
 
             nameEl.innerHTML = name ? name.innerHTML : '';
             roleEl.textContent = role ? role.textContent : '';
-            descEl.innerHTML = bio ? bio.innerHTML : 'Próximamente ficha completa.';
+           // descEl.innerHTML = bio ? bio.innerHTML : 'Próximamente ficha completa.';
 
             // Mostrar modal compatible BS5/BS4
             if (window.bootstrap && bootstrap.Modal) {
