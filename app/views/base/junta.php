@@ -26,7 +26,7 @@
 
     .aaedi-avatar--xl {
         width: 360px;
-        height: 220px;
+        height: 250px;
         border-radius: 6px;
         object-fit: cover;
         object-position: center;
@@ -74,7 +74,7 @@
     /* Modal */
     .aaedi-modal__photo {
         width: 100%;
-        max-height: 260px;
+        max-height: auto;
         object-fit: cover;
         border-radius: 8px;
     }
@@ -102,7 +102,7 @@
 <section id="equipo" class="container my-5">
     <!-- Presidenta destacada -->
     <article class="aaedi-card aaedi-card--xl mb-4">
-        <img class="aaedi-avatar--xl" src="img/other/01/silviagalve.jpg" alt="Silvia Galve Martí">
+        <img class="aaedi-avatar--xl" src="img/other/01/silviagalve4.jpg" alt="Silvia Galve Martí">
         <h3 class="aaedi-name mt-3 mb-1">Silvia Galve Martí</h3>
         <p class="aaedi-role">Presidenta</p>
     </article>
