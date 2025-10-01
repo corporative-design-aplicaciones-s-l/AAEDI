@@ -1,6 +1,6 @@
 <?php
 return [
-  'adrianaperez' => [ 'name' => 'AdrianapPerez', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'adrianaperez', 'photo' => '/img/members/adrianaperez.png', 'title' => 'Adriana Perez' ],
+  'adrianaperez' => [ 'name' => 'AdrianapPerez', 'email' => 'max.serratosa@gmail.com', 'view' => 'adrianaperez', 'photo' => '/img/members/adrianaperez.png', 'title' => 'Adriana Perez' ],
   'asinter' => [ 'name' => 'Asinter', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'asinter', 'photo' => '/img/members/asinter.png', 'title' => 'Asinter' ],
   'blauabogados' => [ 'name' => 'Blau Abogados', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'blauabogados', 'photo' => '/img/members/blauabogados.png', 'title' => 'Blau Abogados' ],
   'blgabogados' => [ 'name' => 'Blg Abogados', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'blgabogados', 'photo' => '/img/members/blgabogados.png', 'title' => 'Blg Abogados' ],
