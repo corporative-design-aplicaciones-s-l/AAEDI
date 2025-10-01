@@ -1,6 +1,6 @@
 <?php
 return [
-  'adrianaperez' => [ 'name' => 'AdrianapPerez', 'email' => 'info@aplslegal.com', 'view' => 'adrianaperez', 'photo' => '/img/members/adrianaperez.png', 'title' => 'Adriana Perez' ],
+  'adrianaperez' => [ 'name' => 'Adriana Perez', 'email' => 'info@aplslegal.com', 'view' => 'adrianaperez', 'photo' => '/img/members/adrianaperez.png', 'title' => 'Adriana Perez' ],
   'asinter' => [ 'name' => 'Asinter', 'email' => 'filoasinter@gmail.com', 'view' => 'asinter', 'photo' => '/img/members/asinter.png', 'title' => 'Asinter' ],
   'blauabogados' => [ 'name' => 'Blau Abogados', 'email' => 'info@blauabogados.com', 'view' => 'blauabogados', 'photo' => '/img/members/blauabogados.png', 'title' => 'Blau Abogados' ],
   'blgabogados' => [ 'name' => 'Blg Abogados', 'email' => 'info@aaedi.es', 'view' => 'blgabogados', 'photo' => '/img/members/blgabogados.png', 'title' => 'Blg Abogados' ],
