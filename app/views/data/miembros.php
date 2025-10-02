@@ -174,7 +174,7 @@ return [
     'slug'    => 'sol4',
     'logo'    => 'img/members/sol4.png',
     'claim'   => 'Investment & Consulting',
-    'nombre'  => 'SOL-4',
+    'nombre'  => '',
     'desc'    => 'Asesoría integral para residentes y no residentes: gestión inmobiliaria, fiscal, legal y administrativa. Compraventas, herencias, NIE e impuestos.',
     'tel'     => '966 715 181',
     'web'     => 'https://sol-4gestion.com/',
