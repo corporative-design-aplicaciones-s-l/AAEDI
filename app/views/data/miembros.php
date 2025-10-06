@@ -193,5 +193,18 @@ return [
     'web'     => 'https://sun-lawyers.com/',
     'web_txt' => 'www.sun-lawyers.com',
     'mail'    => 'admin@sun-lawyers.com',
+  ],  
+  
+  // FABIAN KESSELI
+  [
+    'slug'    => 'fabiankesseli',
+    'logo'    => 'img/members/fabiankesseli.jpg',
+    'claim'   => 'SU ABOGADO EN SU CASA',
+    'nombre'  => 'FABIÁN KESSELI',
+    'desc'    => 'Abogado en Orihuela especializado en Derecho Inmobiliario, Herencias, Contratación y Extranjería. Enfoque en clientes extranjeros que compran en España.',
+    'tel'     => '966 730 264',
+    'web'     => 'https://ihranwaltinsuedostspanien.com/',
+    'web_txt' => 'www.ihranwaltinsuedostspanien.com',
+    'mail'    => 'fabian.kesseli@icaorihuela.com',
   ],
 ];

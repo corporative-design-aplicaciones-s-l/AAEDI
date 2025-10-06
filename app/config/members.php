@@ -5,6 +5,7 @@ return [
   'blauabogados' => [ 'name' => 'Blau Abogados', 'email' => 'info@blauabogados.com', 'view' => 'blauabogados', 'photo' => '/img/members/blauabogados.png', 'title' => 'Blau Abogados' ],
   'blgabogados' => [ 'name' => 'Blg Abogados', 'email' => 'info@aaedi.es', 'view' => 'blgabogados', 'photo' => '/img/members/blgabogados.png', 'title' => 'Blg Abogados' ],
   'easylegals' => [ 'name' => 'Easy Legals', 'email' => 'info@easylegals.com', 'view' => 'easylegals', 'photo' => '/img/members/easylegals.png', 'title' => 'Easy Legals' ],
+  'fabiankesseli' => [ 'name' => 'Fabián Kesseli', 'email' => 'fabian.kesseli@icaorihuela.com ', 'view' => 'fabiankesseli', 'photo' => '/img/members/fabiankesseli.png', 'title' => 'Fabián Kesseli' ],
   'fernandez-y-monfort' => [ 'name' => 'Fernandez Y Monfort', 'email' => 'info@fernandezabogado.es', 'view' => 'fernandez&monfort', 'photo' => '/img/members/fernandez&monfort.png', 'title' => 'Fernandez Y Monfort' ],
   'imontlegal' => [ 'name' => 'Imont Legal', 'email' => 'info@imontlegal.com', 'view' => 'imontlegal', 'photo' => '/img/members/imontlegal.png', 'title' => 'Imont Legal' ],
   'interlexunion' => [ 'name' => 'Interlex Union', 'email' => 'solicitors@lexunion.es', 'view' => 'interlexunion', 'photo' => '/img/members/interlexunion.png', 'title' => 'Interlex Union' ],
