@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-9 col-sm-8 wow fadeInUp" data-wow-delay=".2s">
                 <!-- Imagen de cabecera opcional del despacho -->
-                <img src="img/members/ihr-anwalt-sureste.jpg" class="img-responsive" alt="Ihr Anwalt in Südostspanien" width="80%" />
+                <img src="img/members/fabiankesseli.jpg" class="img-responsive" alt="Ihr Anwalt in Südostspanien" width="80%" />
                 <div class="margin-bottom-30"></div>
 
                 <h3 class="heading-title2">Ihr Anwalt in Südostspanien</h3>
