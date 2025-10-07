@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-sm-8 wow fadeInUp text-center" data-wow-delay=".2s">
-                <img src="img/members/tomasconejero.jpg" class="img-responsive" alt="" width="30%" />
+                <img src="img/members/blauabogados.png" class="img-responsive" alt="" width="30%" />
                 <div class="margin-bottom-30"></div>
                 <h3 class="heading-title2 text-start">BLAU ABOGADOS</h3>
                 <div class="clearfix"></div>
@@ -24,7 +24,7 @@
 
                 </p>
                 <div class="padding-vertical-10"></div>
-                <img src="img/lawyers/blauabogados.jpg" class="img-responsive align-right" width="60%" alt="" />
+                <img src="img/lawyers/tomasconejero.jpg" class="img-responsive align-right" width="60%" alt="" />
                 <p class="text-start">Ofrecemos soluciones ágiles, asequibles y directas para que la parte legal y
                     fiscal nunca más
                     sea un obtáculo a la hora de tomar una decisión.
