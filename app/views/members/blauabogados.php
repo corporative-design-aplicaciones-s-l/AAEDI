@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-sm-8 wow fadeInUp text-center" data-wow-delay=".2s">
-                <img src="img/members/blauabogados.png" class="img-responsive" alt="" width="30%" />
+                <img src="img/members/tomasconejero.jpg" class="img-responsive" alt="" width="30%" />
                 <div class="margin-bottom-30"></div>
                 <h3 class="heading-title2 text-start">BLAU ABOGADOS</h3>
                 <div class="clearfix"></div>
