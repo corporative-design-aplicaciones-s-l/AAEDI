@@ -66,7 +66,7 @@
                 <div class="acc-body" hidden>
                     <p>Estamos cerrando el calendario de formaciones (compraventa, fiscalidad IRNR/ITP-AJD, licencias
                         turísticas, propiedad horizontal, etc.).</p>
-                    <a href="/contacto.php" class="btn btn-primary btn-sm">Quiero proponer/recibir fechas</a>
+                    <a href="/contacto" class="btn btn-primary btn-sm">Quiero proponer/recibir fechas</a>
                 </div>
             </div>
 

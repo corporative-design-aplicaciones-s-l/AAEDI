@@ -206,5 +206,18 @@ return [
     'web'     => 'https://visonalawyers.com/',
     'web_txt' => 'www.visonalawyers.com',
     'mail'    => 'info@visonalawyers.com',
+  ], 
+  
+  // FABIAN KESSELI
+  [
+    'slug'    => 'FABIAN KESSELI',
+    'logo'    => 'img/members/fabiankesseli.png',
+    'claim'   => 'SU ABOGADO EN SU CASA',
+    'nombre'  => 'FABIAN KESSELI',
+    'desc'    => '',
+    'tel'     => '696 15 69 73',
+    'web'     => 'https://www.ihranwaltinsuedostspanien.com',
+    'web_txt' => 'www.ihranwaltinsuedostspanien.com',
+    'mail'    => 'fabian.kesseli@icaorihuela.com',
   ],
 ];
