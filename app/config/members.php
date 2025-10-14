@@ -15,4 +15,5 @@ return [
   'sgm' => [ 'name' => 'Sgm', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'sgm', 'photo' => '/img/members/sgm.png', 'title' => 'SGM' ],
   'sol4' => [ 'name' => 'Sol4', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'sol4', 'photo' => '/img/members/sol4.png', 'title' => 'Sol4' ],
   'sunlawyers' => [ 'name' => 'Sun Lawyers', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'sunlawyers', 'photo' => '/img/members/sunlawyers.png', 'title' => 'Sun Lawyers' ],
+  'visonalawyers' => [ 'name' => 'Visona Lawyers', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'visonalawyers', 'photo' => '/img/members/visonalawyers.png', 'title' => 'Visona Lawyers' ],
 ];
