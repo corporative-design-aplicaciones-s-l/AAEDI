@@ -211,7 +211,7 @@ return [
   // FABIAN KESSELI
   [
     'slug'    => 'FABIAN KESSELI',
-    'logo'    => 'img/members/fabiankesseli.png',
+    'logo'    => 'img/members/fabiankesseli.jpg',
     'claim'   => 'SU ABOGADO EN SU CASA',
     'nombre'  => 'FABIAN KESSELI',
     'desc'    => '',
