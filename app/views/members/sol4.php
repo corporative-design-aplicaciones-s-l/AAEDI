@@ -49,7 +49,7 @@
                     <h5 class="mb-3">Equipo</h5>
                     <h6 class="mb-2 text-uppercase fw-bold">Miembros clave</h6>
                     <ul class="side-attorneys mb-3">
-                        <li><a href="#">Marina Martínez Noguera (Abogada)</a></li>
+                        <!--<li><a href="#">Marina Martínez Noguera (Abogada)</a></li>-->
                         <li><a href="#">Mar Bascuñana Garcia (Gerente / Abogada y Asesor Fiscal)</a></li>
                     </ul>
                 </div>

@@ -24,7 +24,7 @@
 
                 </p>
                 <div class="padding-vertical-10"></div>
-                <img src="img/lawyers/blauabogados.jpg" class="img-responsive align-right" width="60%" alt="" />
+                <img src="img/lawyers/tomasconejero.jpg" class="img-responsive align-right" width="60%" alt="" />
                 <p class="text-start">Ofrecemos soluciones ágiles, asequibles y directas para que la parte legal y
                     fiscal nunca más
                     sea un obtáculo a la hora de tomar una decisión.

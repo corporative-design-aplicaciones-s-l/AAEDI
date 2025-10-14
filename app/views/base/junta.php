@@ -102,7 +102,7 @@
 <section id="equipo" class="container my-5">
     <!-- Presidenta destacada -->
     <article class="aaedi-card aaedi-card--xl mb-4">
-        <img class="aaedi-avatar--xl" src="img/other/01/silviagalve4.jpg" alt="Silvia Galve Martí">
+        <img class="aaedi-avatar--xl" src="img/junta/01/silviagalve4.jpg" alt="Silvia Galve Martí">
         <h3 class="aaedi-name mt-3 mb-1">Silvia Galve Martí</h3>
         <p class="aaedi-role">Presidenta</p>
     </article>
@@ -111,7 +111,7 @@
     <div class="row g-4 justify-content-center">
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/isabelmontesinos.jpg" alt="Isabel Montesinos">
+                <img class="aaedi-avatar" src="img/junta/01/isabelmontesinos.jpg" alt="Isabel Montesinos">
                 <h3 class="aaedi-name mt-3 mb-1">Isabel Montesinos</h3>
                 <p class="aaedi-role">Vicepresidenta</p>
             </article>
@@ -119,7 +119,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/marbascunana.jpg" alt="Maria Del Mar Bascuñana García">
+                <img class="aaedi-avatar" src="img/junta/01/marbascunana.jpg" alt="Maria Del Mar Bascuñana García">
                 <h3 class="aaedi-name mt-3 mb-1">Maria Del Mar Bascuñana García</h3>
                 <p class="aaedi-role">Secretaria</p>
             </article>
@@ -127,7 +127,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/3.png" alt="Tomás Conejero Gómez">
+                <img class="aaedi-avatar" src="img/junta/01/tomasconejero.jpg" alt="Tomás Conejero Gómez">
                 <h3 class="aaedi-name mt-3 mb-1">Tomás Conejero Gómez</h3>
                 <p class="aaedi-role">Tesorero</p>
             </article>
@@ -135,7 +135,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/alfredmanchon.jpg" alt="Alfred Manchón">
+                <img class="aaedi-avatar" src="img/junta/01/alfredmanchon.jpg" alt="Alfred Manchón">
                 <h3 class="aaedi-name mt-3 mb-1">Alfred Manchón</h3>
                 <p class="aaedi-role">Vocal</p>
             </article>
@@ -143,7 +143,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/2.png" alt="Jose Ramón Pastor">
+                <img class="aaedi-avatar" src="img/junta/01/2.png" alt="Jose Ramón Pastor">
                 <h3 class="aaedi-name mt-3 mb-1">Jose Ramón Pastor</h3>
                 <p class="aaedi-role">Vocal</p>
             </article>
@@ -151,7 +151,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/3.png" alt="Francisco Javier Pastor">
+                <img class="aaedi-avatar" src="img/junta/01/3.png" alt="Francisco Javier Pastor">
                 <h3 class="aaedi-name mt-3 mb-1">Francisco Javier Pastor</h3>
                 <p class="aaedi-role">Vocal</p>
             </article>
@@ -159,7 +159,7 @@
 
         <div class="col-auto">
             <article class="aaedi-card aaedi-card--sm h-100">
-                <img class="aaedi-avatar" src="img/other/01/pabloguevara.jpg" alt="Pablo M. Gómez Ladrón de Guevara">
+                <img class="aaedi-avatar" src="img/junta/01/pabloguevara.jpg" alt="Pablo M. Gómez Ladrón de Guevara">
                 <h3 class="aaedi-name mt-3 mb-1">Pablo M. Gómez<br>Ladrón de Guevara</h3>
                 <p class="aaedi-role">Vocal</p>
             </article>
