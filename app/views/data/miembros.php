@@ -202,7 +202,7 @@ return [
     'claim'   => 'Making Law Make Sense',
     'nombre'  => 'VISONA LAWYERS',
     'desc'    => '',
-    'tel'     => '966 843 701',
+    'tel'     => '966 843 701', 
     'web'     => 'https://visonalawyers.com/',
     'web_txt' => 'www.visonalawyers.com',
     'mail'    => 'info@visonalawyers.com',
