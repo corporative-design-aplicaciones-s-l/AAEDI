@@ -145,7 +145,7 @@ return [
 
   // NMN ABOGADOS
   [
-    'slug'    => 'nmn',
+    'slug'    => 'nmn-abogados',
     'logo'    => 'img/members/nmn.png',
     'claim'   => '',
     'nombre'  => 'NMN Abogados',
