@@ -11,7 +11,7 @@ return [
   'mamsolicitors' => ['name' => 'MAM Solicitors', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'mamsolicitors', 'photo' => '/img/members/mamsolicitors.png', 'title' => 'MAM Solicitors'],
   'manchonabogados' => ['name' => 'Manchon Abogados', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'manchonabogados', 'photo' => '/img/members/manchonabogados.png', 'title' => 'Manchon Abogados'],
   'marenostrum' => ['name' => 'Mare Nostrum', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'marenostrum', 'photo' => '/img/members/marenostrum.png', 'title' => 'Mare Nostrum'],
-  'nmn' => ['name' => 'Nmn Abogados', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'nmn', 'photo' => '/img/members/nmn.png', 'title' => 'NMN'],
+  'nmn' => ['name' => 'Nmn Abogados', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'nmn', 'photo' => '/img/members/nmn.png', 'title' => 'NMN Abogados'],
   'sgm' => ['name' => 'Sgm', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'sgm', 'photo' => '/img/members/sgm.png', 'title' => 'SGM'],
   'sol4' => ['name' => 'Sol4', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'sol4', 'photo' => '/img/members/sol4.png', 'title' => 'Sol4'],
   'sunlawyers' => ['name' => 'Sun Lawyers', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'sunlawyers', 'photo' => '/img/members/sunlawyers.png', 'title' => 'Sun Lawyers'],
