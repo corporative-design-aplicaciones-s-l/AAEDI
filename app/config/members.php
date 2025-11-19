@@ -18,10 +18,10 @@ return [
   'visonalawyers' => ['name' => 'Visona Lawyers', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'visonalawyers', 'photo' => '/img/members/visonalawyers.png', 'title' => 'Visona Lawyers'],
   'fabiankesseli' => ['name' => 'Fabián Kesseli', 'email' => 'fabian.kesseli@icaorihuela.com ', 'view' => 'fabiankesseli', 'photo' => '/img/members/fabiankesseli.jpg', 'title' => 'Fabián Kesseli'],
   'cuencaasociados' => [
-    'name' => 'Cuenca Abogados Asociados',
+    'name' => 'Cuenca Abogados',
     'email' => 'info@cuencaasociados.com',
     'view' => 'cuencaasociados',
     'photo' => '/img/members/cuencaasociados.png',
-    'title' => 'Cuenca Abogados Asociados',
+    'title' => 'Cuenca Abogados',
   ],
 ];

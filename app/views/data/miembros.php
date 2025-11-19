@@ -226,7 +226,7 @@ return [
     'logo' => 'img/members/cuencaasociados.png',
     'claim' => 'Expertos legales en Murcia y Alicante',
     'nombre' => 'CUENCA ABOGADOS ASOCIADOS',
-    'desc' => 'Despacho de abogados y economistas con más de 20 años de experiencia, con oficinas en Murcia y Pilar de la Horadada (Alicante). Ofrecen asesoramiento jurídico y económico integral a empresas y particulares, con especial foco en derecho mercantil, inmobiliario, bancario, fiscal e internacional, y atención en español, inglés y neerlandés.',
+    'desc' => 'Despacho de abogados y economistas con más de 20 años de experiencia, con oficinas en Murcia y Pilar de la Horadada (Alicante).',
     'tel' => '+34 968 90 96 68',
     'web' => 'https://cuencaasociados.com/',
     'web_txt' => 'www.cuencaasociados.com',
