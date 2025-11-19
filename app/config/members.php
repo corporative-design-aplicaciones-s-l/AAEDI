@@ -17,4 +17,11 @@ return [
   'sunlawyers' => ['name' => 'Sun Lawyers', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'sunlawyers', 'photo' => '/img/members/sunlawyers.png', 'title' => 'Sun Lawyers'],
   'visonalawyers' => ['name' => 'Visona Lawyers', 'email' => 'CONTACTO@EJEMPLO.COM', 'view' => 'visonalawyers', 'photo' => '/img/members/visonalawyers.png', 'title' => 'Visona Lawyers'],
   'fabiankesseli' => ['name' => 'Fabián Kesseli', 'email' => 'fabian.kesseli@icaorihuela.com ', 'view' => 'fabiankesseli', 'photo' => '/img/members/fabiankesseli.jpg', 'title' => 'Fabián Kesseli'],
+  'cuencaasociados' => [
+    'name' => 'Cuenca Abogados Asociados',
+    'email' => 'info@cuencaasociados.com',
+    'view' => 'cuencaasociados',
+    'photo' => '/img/members/cuencaasociados.png',
+    'title' => 'Cuenca Abogados Asociados',
+  ],
 ];
