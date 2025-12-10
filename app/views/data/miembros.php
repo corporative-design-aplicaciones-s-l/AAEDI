@@ -232,4 +232,15 @@ return [
     'web_txt' => 'www.cuencaasociados.com',
     'mail' => 'info@cuencaasociados.com',
   ],
+  'mflsolicitors' => [
+    'slug' => 'mflsolicitors',
+    'logo' => 'img/members/mlfsolicitors.png',
+    'claim' => 'Nuestros clientes son el corazón de nuestra organización',
+    'nombre' => 'MLF Solicitors',
+    'desc' => 'Despacho jurídico con un equipo de abogados y asistentes legales comprometidos, enfocados en ofrecer un servicio cercano y orientado al cliente.',
+    'tel' => '+34 966 723 620',
+    'web' => 'https://mlfsolicitors.com',
+    'web_txt' => 'mlfsolicitors.com',
+    'mail' => 'scfabogado@gmail.com',
+  ],
 ];
