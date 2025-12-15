@@ -32,7 +32,48 @@
 
                 <p class="text-start">
                     El despacho basa su trabajo en la confianza, la comunicación directa y el trato
-                    personalizado, ofreciendo asesoramiento jurídico adaptado a cada situación concreta.
+                    personalizado, ofreciendo asesoramiento jurídico adaptado a las necesidades concretas
+                    de cada cliente, tanto a nivel nacional como internacional.
+                </p>
+
+                <div class="margin-bottom-25"></div>
+
+                <!-- EQUIPO -->
+                <h4 class="text-start">Nuestro equipo</h4>
+
+                <p class="text-start">
+                    <b>Nuria Cámara Hernández</b><br>
+                    Abogada.<br><br>
+                    Licenciada en Derecho por la Universidad de Murcia. Miembro ejerciente del Ilustre
+                    Colegio de Abogados de Orihuela. Cuenta con un Máster en Asesoría Jurídica de Empresas
+                    por la Universidad Internacional de La Rioja y el título de Formador de Formadores por
+                    la Universidad Nebrija de Madrid.
+                </p>
+
+                <p class="text-start">
+                    Su continua formación y amplia experiencia profesional, tanto legal como judicial,
+                    aseguran a los clientes un asesoramiento jurídico integral y plenamente garantizado.
+                    <br><br>
+                    <b>Idiomas:</b> Español e inglés.
+                </p>
+
+                <div class="margin-bottom-25"></div>
+
+                <p class="text-start">
+                    <b>Michelle Copmans</b><br>
+                    Asistente legal.<br><br>
+                    Licenciada en Ciencias Políticas por la Universidad Católica de Mons (Bélgica).
+                    Actualmente cursa el Grado en Derecho en la UNED y realiza un Curso Universitario en
+                    Mediación Civil, Mercantil y Familiar en CEDECO, en colaboración con la Universidad
+                    Rey Juan Carlos I de Madrid.
+                </p>
+
+                <p class="text-start">
+                    Cuenta con experiencia en el ámbito jurídico tanto en Bélgica como en España, donde
+                    desde 2012 ha trabajado como traductora e intérprete para clientes francófonos y ha
+                    asesorado a clientes del sector inmobiliario.
+                    <br><br>
+                    <b>Idiomas:</b> Francés, inglés, holandés y castellano.
                 </p>
 
                 <div class="clearfix"></div>
@@ -47,11 +88,23 @@
                 <div class="widget margin-bottom-40">
                     <h5 class="mb-3">Equipo</h5>
                     <ul class="side-attorneys mb-3">
-                        <!-- Añadir aquí exactamente los nombres tal y como aparecen en mlfsolicitors.com -->
-                        <!--
-                        <li><a href="#">Nombre Apellido</a></li>
-                        <li><a href="#">Nombre Apellido</a></li>
-                        -->
+                        <li><a href="#">Nuria Cámara Hernández</a></li>
+                        <li><a href="#">Michelle Copmans</a></li>
+                    </ul>
+                </div>
+
+                <!-- SERVICIOS -->
+                <div class="widget margin-bottom-20">
+                    <h5>Servicios</h5>
+                    <ul class="side-practise">
+                        <li><a href="#">Derecho Inmobiliario</a></li>
+                        <li><a href="#">Urbanismo</a></li>
+                        <li><a href="#">Derecho Civil &amp; de Familia</a></li>
+                        <li><a href="#">Derecho Bancario</a></li>
+                        <li><a href="#">Herencias y Testamentarias</a></li>
+                        <li><a href="#">Derecho Fiscal</a></li>
+                        <li><a href="#">Residir en España</a></li>
+                        <li><a href="#">Derecho Mercantil</a></li>
                     </ul>
                 </div>
 
@@ -61,7 +114,7 @@
     </div>
 </div>
 
-<!-- BLOQUE DE CONTACTO -->
+<!-- CONTACTO -->
 <div class="bg-gray padding-vertical-100 attorney-content wow fadeInUpBig" data-wow-delay=".2s">
     <div class="container">
 
@@ -88,24 +141,25 @@
 
         <!-- Formulario -->
         <?php
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        if (session_status() === PHP_SESSION_NONE) session_start();
         $_SESSION['csrf_token'] = $_SESSION['csrf_token'] ?? bin2hex(random_bytes(16));
         ?>
 
-        <form action="/member/<?= htmlspecialchars($slug) ?>/submit" method="post" class="ajax-form form-main"
-            id="member-contact-form" novalidate>
+        <form action="/member/<?= htmlspecialchars($slug) ?>/submit"
+              method="post"
+              class="ajax-form form-main"
+              id="member-contact-form"
+              novalidate>
 
             <div class="row">
                 <div class="col-sm-3">
                     <input placeholder="Nombre *" type="text" name="name" required>
                 </div>
                 <div class="col-sm-3">
-                    <input placeholder="Teléfono" type="tel" name="phone">
+                    <input placeholder="Teléfono" type="tel" name="phone" inputmode="tel">
                 </div>
                 <div class="col-sm-3">
-                    <input placeholder="E-mail *" type="email" name="email" required>
+                    <input placeholder="E-mail *" type="email" name="email" required inputmode="email">
                 </div>
                 <div class="col-sm-3">
                     <div class="custom-select">
@@ -124,7 +178,7 @@
 
             <!-- Honeypot -->
             <input type="text" name="website" tabindex="-1"
-                style="position:absolute;left:-9999px;height:0;width:0;opacity:0">
+                   style="position:absolute;left:-9999px;height:0;width:0;opacity:0">
 
             <!-- CSRF -->
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
@@ -133,36 +187,8 @@
                 <button type="submit">Enviar</button>
             </div>
 
-            <div id="member-contact-status" class="text-center mt-2"></div>
+            <div id="member-contact-status" class="text-center mt-2" role="status" aria-live="polite"></div>
         </form>
-
-        <script>
-            document.getElementById('member-contact-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const form = e.currentTarget;
-                const status = document.getElementById('member-contact-status');
-                status.textContent = 'Enviando...';
-
-                try {
-                    const res = await fetch(form.action, {
-                        method: 'POST',
-                        body: new FormData(form),
-                        credentials: 'same-origin',
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    const data = await res.json();
-
-                    if (data.ok) {
-                        status.textContent = '¡Mensaje enviado! El despacho te contactará pronto.';
-                        form.reset();
-                    } else {
-                        status.textContent = 'Error: ' + (data.error || 'No se pudo enviar');
-                    }
-                } catch {
-                    status.textContent = 'Error de red. Inténtalo de nuevo.';
-                }
-            });
-        </script>
 
     </div>
 </div>
